@@ -13,7 +13,6 @@
         :root {
             --bg-dark: #090d16;
             --bg-card: rgba(19, 26, 42, 0.75);
-            --bg-card-hover: rgba(30, 42, 69, 0.85);
             --border: rgba(255, 255, 255, 0.08);
             
             --primary: #6366f1;
@@ -54,7 +53,7 @@
 
         /* Top Header */
         header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
-        .logo-area { display: flex; align-items: center; gap: 12px; }
+        .logo-area { display: flex; align-items: center; gap: 12px; cursor: pointer; }
         .logo-icon {
             width: 44px; height: 44px; border-radius: 14px;
             background: linear-gradient(135deg, var(--primary), var(--accent-pink));
@@ -64,7 +63,7 @@
         .logo-text h1 { font-size: 22px; font-weight: 800; background: linear-gradient(to right, #fff, var(--text-muted)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .logo-text p { font-size: 11px; color: var(--accent-cyan); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Nav & Actions */
+        /* Nav & Tabs */
         .nav-tabs { display: flex; gap: 6px; background: rgba(15, 23, 42, 0.6); padding: 5px; border-radius: 16px; border: 1px solid var(--border); flex-wrap: wrap; }
         .tab-btn {
             padding: 8px 16px; border-radius: 12px; border: none; background: transparent;
@@ -89,13 +88,12 @@
         .hero-benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px; }
         .benefit-card { background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); padding: 16px; border-radius: 14px; }
 
-        /* Inputs & Selects */
+        /* Inputs & Tables */
         select, input {
             background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border);
             color: var(--text-main); padding: 10px 14px; border-radius: 12px; font-size: 13px; outline: none;
         }
 
-        /* Tables & Badges */
         table { width: 100%; border-collapse: collapse; text-align: left; }
         th { padding: 12px 16px; font-size: 11px; text-transform: uppercase; color: var(--text-muted); border-bottom: 1px solid var(--border); }
         td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 13px; }
@@ -105,21 +103,24 @@
         .badge-success { background: rgba(16, 185, 129, 0.15); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.3); }
         .badge-warning { background: rgba(245, 158, 11, 0.15); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.3); }
 
-        /* Grid Catalog */
+        /* Catalog Cards */
         .catalog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 16px; }
         .tool-card { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; }
         .tool-card:hover { border-color: var(--primary); transform: translateY(-3px); }
 
-        /* Modal Onboarding */
+        .fav-btn { cursor: pointer; color: var(--text-muted); transition: 0.2s; font-size: 18px; }
+        .fav-btn.active { color: var(--accent-pink); }
+
+        /* Modal Auth Windows */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
             display: none; align-items: center; justify-content: center; z-index: 1000;
         }
-        .modal-body { width: 100%; max-width: 520px; padding: 28px; }
-
-        .fav-btn { cursor: pointer; color: var(--text-muted); transition: 0.2s; }
-        .fav-btn.active { color: var(--accent-pink); }
+        .modal-body { width: 100%; max-width: 480px; padding: 28px; }
+        .auth-toggle { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid var(--border); pb: 10px; }
+        .auth-toggle button { background: none; border: none; color: var(--text-muted); font-size: 15px; font-weight: 700; cursor: pointer; padding-bottom: 8px; }
+        .auth-toggle button.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
     </style>
 </head>
 <body>
@@ -128,7 +129,7 @@
 
     <!-- Header Section -->
     <header>
-        <div class="logo-area">
+        <div class="logo-area" onclick="switchTab('home')">
             <div class="logo-icon"><i data-lucide="layers" style="color:white; width:24px;"></i></div>
             <div class="logo-text">
                 <h1>StockFlow AI</h1>
@@ -140,15 +141,14 @@
         <div class="nav-tabs">
             <button class="tab-btn active" id="tab-home-btn" onclick="switchTab('home')"><i data-lucide="compass" style="width:15px;"></i> Главная</button>
             <button class="tab-btn" id="tab-catalog-btn" onclick="switchTab('catalog')"><i data-lucide="grid" style="width:15px;"></i> Каталог инструментов</button>
+            <button class="tab-btn" id="tab-fav-btn" onclick="switchTab('favorites')"><i data-lucide="heart" style="width:15px; color:var(--accent-pink);"></i> Избранное (<span id="fav-count">0</span>)</button>
             <button class="tab-btn" id="tab-dashboard-btn" onclick="switchTab('dashboard')"><i data-lucide="layout-dashboard" style="width:15px;"></i> Учет склада</button>
             <button class="tab-btn" id="tab-profile-btn" onclick="switchTab('profile')"><i data-lucide="user" style="width:15px;"></i> Кабинет</button>
         </div>
 
-        <div style="display:flex; gap:10px; align-items:center;">
-            <span class="badge badge-warning" style="padding: 8px 12px; cursor:pointer;" onclick="switchTab('catalog')">
-                ❤️ Избранное: <strong id="fav-count">0</strong>
-            </span>
-            <button class="btn btn-outline" onclick="openOnboarding()"><i data-lucide="sparkles" style="width:15px;"></i> Подбор AI</button>
+        <!-- User / Auth Header Action -->
+        <div id="auth-header-btn">
+            <button class="btn btn-primary" onclick="openAuthModal('login')"><i data-lucide="log-in" style="width:15px;"></i> Войти / Регистрация</button>
         </div>
     </header>
 
@@ -158,32 +158,31 @@
             <span class="badge badge-success" style="margin-bottom:12px;">Управление запасами нового поколения</span>
             <h2 class="hero-title">Исключите дефицит товара и спишите излишки за 3 дня</h2>
             <p class="hero-subtitle">
-                StockFlow AI — интеллектуальная платформа для малого и среднего бизнеса (салоны красоты, общепит, ритейл). 
-                Автоматически прогнозирует расход, формирует заказы поставщикам и предотвращает заморозку денег на складе.
+                StockFlow AI — интеллектуальная платформа для бизнеса (салоны красоты, общепит, ритейл). 
+                Прогнозирует расход, формирует автозакупки поставщикам и экономит бюджет.
             </p>
 
             <div class="hero-benefits">
                 <div class="benefit-card">
                     <i data-lucide="trending-down" style="color:var(--danger); margin-bottom:8px;"></i>
                     <h4 style="font-size:14px; margin-bottom:4px;">-35% Потерь от излишков</h4>
-                    <p style="font-size:12px; color:var(--text-muted);">Система предотвращает закупку пылящегося товара.</p>
+                    <p style="font-size:12px; color:var(--text-muted);">Предотвращает закупку залежавшегося товара.</p>
                 </div>
                 <div class="benefit-card">
                     <i data-lucide="zap" style="color:var(--warning); margin-bottom:8px;"></i>
                     <h4 style="font-size:14px; margin-bottom:4px;">100% Автозакупка</h4>
-                    <p style="font-size:12px; color:var(--text-muted);">Формирование накладных поставщикам в 1 клик.</p>
+                    <p style="font-size:12px; color:var(--text-muted);">Автоматическая отправка накладных поставщикам.</p>
                 </div>
                 <div class="benefit-card">
                     <i data-lucide="bar-chart-3" style="color:var(--accent-cyan); margin-bottom:8px;"></i>
-                    <h4 style="font-size:14px; margin-bottom:4px;">Прогноз спроса</h4>
-                    <p style="font-size:12px; color:var(--text-muted);">AI анализирует динамику списаний за прошлые дни.</p>
+                    <h4 style="font-size:14px; margin-bottom:4px;">Прогноз спроса AI</h4>
+                    <p style="font-size:12px; color:var(--text-muted);">Анализ списаний и сезонности в реальном времени.</p>
                 </div>
             </div>
 
-            <!-- Call to Actions -->
             <div style="display:flex; gap:12px; flex-wrap:wrap;">
-                <button class="btn btn-primary" onclick="calcDeliveryModal()"><i data-lucide="calculator" style="width:16px;"></i> Расчет логистики и доставки</button>
-                <button class="btn btn-accent" onclick="switchTab('dashboard')"><i data-lucide="shopping-bag" style="width:16px;"></i> Быстрый заказ у поставщика</button>
+                <button class="btn btn-primary" onclick="openAuthModal('register')"><i data-lucide="user-plus" style="width:16px;"></i> Зарегистрировать бизнес</button>
+                <button class="btn btn-accent" onclick="calcDeliveryModal()"><i data-lucide="calculator" style="width:16px;"></i> Расчет логистики</button>
                 <button class="btn btn-outline" onclick="openShareModal()"><i data-lucide="share-2" style="width:16px;"></i> Обмен панелями</button>
             </div>
         </div>
@@ -194,10 +193,9 @@
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
             <div>
                 <h3 style="font-size:20px; font-weight:700;">🧰 Каталог инструментов и модулей</h3>
-                <p style="font-size:13px; color:var(--text-muted);">Подключайте готовые AI-сервисы для автоматизации бизнеса</p>
+                <p style="font-size:13px; color:var(--text-muted);">Активируйте функции и добавляйте их в избранное</p>
             </div>
 
-            <!-- Filters -->
             <div style="display:flex; gap:8px;">
                 <button class="btn btn-outline" onclick="filterCatalog('all')">Все</button>
                 <button class="btn btn-outline" onclick="filterCatalog('auto')">Автозакуп</button>
@@ -208,9 +206,16 @@
         <div class="catalog-grid" id="catalog-container"></div>
     </div>
 
-    <!-- SECTION 3: DASHBOARD & INVENTORY -->
+    <!-- SECTION 3: FAVORITES TAB -->
+    <div id="tab-favorites" style="display:none;">
+        <h3 style="font-size:20px; font-weight:700; margin-bottom:8px;">❤️ Избранные инструменты</h3>
+        <p style="font-size:13px; color:var(--text-muted); margin-bottom:20px;">Ваша персональная подборка сохраненных модулей</p>
+        
+        <div class="catalog-grid" id="favorites-container"></div>
+    </div>
+
+    <!-- SECTION 4: DASHBOARD & INVENTORY -->
     <div id="tab-dashboard" style="display:none;">
-        <!-- Controls Header -->
         <div class="glass" style="padding:16px 20px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
             <div style="display:flex; align-items:center; gap:12px;">
                 <select id="business-select" onchange="changeBusiness()">
@@ -218,12 +223,11 @@
                     <option value="coffee">☕ Сеть кофеен</option>
                     <option value="market">🛒 Ритейл / Маркет</option>
                 </select>
-                <span style="font-size:13px; color:var(--text-muted);" id="current-model-info">Модель учета: <strong>FIFO</strong></span>
+                <span style="font-size:13px; color:var(--text-muted);" id="current-model-info">Модель: <strong>FIFO</strong></span>
             </div>
-            <button class="btn btn-accent" onclick="simulateDay()"><i data-lucide="fast-forward" style="width:15px;"></i> Провести рабочую смену (Списание)</button>
+            <button class="btn btn-accent" onclick="simulateDay()"><i data-lucide="fast-forward" style="width:15px;"></i> Провести смену (Списание)</button>
         </div>
 
-        <!-- Inventory Table -->
         <div class="glass" style="padding:24px; margin-bottom:24px; overflow-x:auto;">
             <h3 style="font-size:17px; font-weight:700; margin-bottom:16px;">📦 Интерактивный складской учет</h3>
             <table>
@@ -241,8 +245,7 @@
             </table>
         </div>
 
-        <!-- Add Custom Text Product -->
-        <div class="glass" style="padding:20px; margin-bottom:24px;">
+        <div class="glass" style="padding:20px;">
             <h4 style="font-size:15px; margin-bottom:12px;">➕ Быстрое добавление нового товара</h4>
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:10px;">
                 <input type="text" id="new-name" placeholder="Наименование">
@@ -256,35 +259,37 @@
         </div>
     </div>
 
-    <!-- SECTION 4: PROFILE & RECOMMENDATIONS -->
+    <!-- SECTION 5: PROFILE & RECOMMENDATIONS -->
     <div id="tab-profile" style="display:none;">
         <div style="display:grid; grid-template-columns: 1fr 2fr; gap:20px;">
-            <!-- Profile Info -->
+            <!-- Profile Info Card -->
             <div class="glass" style="padding:24px;">
                 <div style="text-align:center; margin-bottom:20px;">
                     <div style="width:70px; height:70px; border-radius:50%; background:linear-gradient(135deg, var(--primary), var(--accent-pink)); margin:0 auto 12px; display:flex; align-items:center; justify-content:center;">
                         <i data-lucide="user-check" style="width:36px; color:white;"></i>
                     </div>
-                    <h3 style="font-size:18px; font-weight:700;">Анна Сергеева</h3>
-                    <p style="font-size:12px; color:var(--text-muted);">Руководитель сети</p>
+                    <h3 style="font-size:18px; font-weight:700;" id="user-display-name">Гость</h3>
+                    <p style="font-size:12px; color:var(--text-muted);" id="user-display-email">Войдите в аккаунт</p>
                 </div>
                 
-                <div style="display:flex; flex-direction:column; gap:12px; font-size:13px; border-top:1px solid var(--border); padding-top:16px;">
-                    <div><strong>Тип бизнеса:</strong> <span id="profile-biz-type" style="color:var(--accent-cyan)">Салон красоты</span></div>
+                <div style="display:flex; flex-direction:column; gap:12px; font-size:13px; border-top:1px solid var(--border); padding-top:16px; margin-bottom:20px;">
+                    <div><strong>Организация:</strong> <span id="profile-biz-type" style="color:var(--accent-cyan)">Салон красоты</span></div>
                     <div><strong>Модель учета:</strong> <span id="profile-model-type" style="color:var(--accent-cyan)">FIFO</span></div>
-                    <div><strong>Статус AI-бота:</strong> <span style="color:var(--success)">● Подключен</span></div>
+                    <div><strong>Telegram Бот:</strong> <span style="color:var(--success)">● Подключен</span></div>
                 </div>
+
+                <button class="btn btn-outline" style="width:100%; justify-center;" onclick="openAuthModal('login')"><i data-lucide="refresh-cw"></i> Сменить аккаунт</button>
             </div>
 
-            <!-- Recommendations & Active Orders -->
+            <!-- Profile Content -->
             <div style="display:flex; flex-direction:column; gap:20px;">
                 <div class="glass" style="padding:20px;">
                     <h3 style="font-size:16px; font-weight:700; margin-bottom:12px; color:var(--warning); display:flex; align-items:center; gap:8px;">
-                        <i data-lucide="lightbulb"></i> AI-Рекомендации по улучшению внедрения
+                        <i data-lucide="lightbulb"></i> Персональные AI-Рекомендации
                     </h3>
-                    <ul style="padding-left:20px; font-size:13px; color:var(--text-muted); display:flex; flex-direction:column; gap:8px;" id="recommendations-list">
-                        <li>Включите модуль «Прогноз спроса на 14 дней», чтобы сократить кассовый разрыв.</li>
-                        <li>Поставщик «Estel Pro» задерживает поставки на 2 дня — увеличьте мин. лимит товара.</li>
+                    <ul style="padding-left:20px; font-size:13px; color:var(--text-muted); display:flex; flex-direction:column; gap:8px;">
+                        <li>Включите модуль «Прогноз спроса на 14 дней» в каталоге для предотвращения дефицита.</li>
+                        <li>Поставщик «Estel Pro» поставляет товар с задержкой 2 дня — рекомендуем поднять неснижаемый остаток.</li>
                     </ul>
                 </div>
 
@@ -298,36 +303,55 @@
 
 </div>
 
-<!-- ONBOARDING MODAL (РЕГИСТРАЦИЯ / РЕКОМЕНДАЦИИ) -->
-<div class="modal-overlay" id="onboarding-modal">
+<!-- LOGIN / REGISTER MODAL (CITY QUEST STYLE) -->
+<div class="modal-overlay" id="auth-modal">
     <div class="glass modal-body">
-        <h3 style="font-size:20px; font-weight:800; margin-bottom:8px;">🎯 AI-Подбор инструментов</h3>
-        <p style="font-size:13px; color:var(--text-muted); margin-bottom:20px;">Укажите параметры вашего бизнеса для точной настройки алгоритмов платформы.</p>
-
-        <div style="display:flex; flex-direction:column; gap:14px; margin-bottom:20px;">
-            <div>
-                <label style="font-size:12px; color:var(--text-muted); display:block; margin-bottom:4px;">Тип вашего бизнеса</label>
-                <select id="onboard-biz" style="width:100%;">
-                    <option value="beauty">💄 Салон красоты / SPA / Косметология</option>
-                    <option value="coffee">☕ Сеть кофеен / Общепит / Ресторан</option>
-                    <option value="market">🛒 Ритейл / Минимаркет / Магазин</option>
-                </select>
-            </div>
-
-            <div>
-                <label style="font-size:12px; color:var(--text-muted); display:block; margin-bottom:4px;">Предпочитаемая модель учета</label>
-                <select id="onboard-model" style="width:100%;">
-                    <option value="FIFO">FIFO (First In, First Out — Скоропорт)</option>
-                    <option value="LIFO">LIFO (Last In, First Out)</option>
-                    <option value="AVG">Средневзвешенная стоимость</option>
-                </select>
-            </div>
+        <div class="auth-toggle">
+            <button id="auth-tab-login" class="active" onclick="switchAuthMode('login')">Вход в кабинет</button>
+            <button id="auth-tab-reg" onclick="switchAuthMode('register')">Регистрация бизнеса</button>
         </div>
 
-        <div style="display:flex; gap:10px; justify-content:flex-end;">
-            <button class="btn btn-outline" onclick="closeOnboarding()">Отмена</button>
-            <button class="btn btn-primary" onclick="saveOnboarding()"><i data-lucide="check"></i> Применить настройки</button>
-        </div>
+        <form id="auth-form" onsubmit="handleAuth(event)">
+            <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:20px;">
+                <div id="field-name" style="display:none;">
+                    <label style="font-size:12px; color:var(--text-muted); display:block; margin-bottom:4px;">Ваше имя / ФИО</label>
+                    <input type="text" id="auth-name" placeholder="Анна Сергеева" style="width:100%;">
+                </div>
+
+                <div>
+                    <label style="font-size:12px; color:var(--text-muted); display:block; margin-bottom:4px;">Email / Логин</label>
+                    <input type="email" id="auth-email" placeholder="admin@business.kz" required style="width:100%;">
+                </div>
+
+                <div>
+                    <label style="font-size:12px; color:var(--text-muted); display:block; margin-bottom:4px;">Пароль</label>
+                    <input type="password" id="auth-pass" placeholder="••••••••" required style="width:100%;">
+                </div>
+
+                <div id="field-biz" style="display:none;">
+                    <label style="font-size:12px; color:var(--text-muted); display:block; margin-bottom:4px;">Сфера бизнеса</label>
+                    <select id="auth-biz" style="width:100%;">
+                        <option value="beauty">💄 Салон красоты / SPA / Косметология</option>
+                        <option value="coffee">☕ Сеть кофеен / Общепит / Ресторан</option>
+                        <option value="market">🛒 Ритейл / Минимаркет / Магазин</option>
+                    </select>
+                </div>
+
+                <div id="field-model" style="display:none;">
+                    <label style="font-size:12px; color:var(--text-muted); display:block; margin-bottom:4px;">Модель учета сырья</label>
+                    <select id="auth-model" style="width:100%;">
+                        <option value="FIFO">FIFO (First In, First Out — Скоропорт)</option>
+                        <option value="LIFO">LIFO (Last In, First Out)</option>
+                        <option value="AVG">Средневзвешенная стоимость</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:10px; justify-content:flex-end;">
+                <button type="button" class="btn btn-outline" onclick="closeAuthModal()">Отмена</button>
+                <button type="submit" class="btn btn-primary" id="auth-submit-btn">Войти</button>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -335,23 +359,24 @@
 <div class="modal-overlay" id="share-modal">
     <div class="glass modal-body">
         <h3 style="font-size:18px; font-weight:800; margin-bottom:8px;">🔗 Обмен конфигурациями панелей</h3>
-        <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Скопируйте уникальный код вашей панели для передачи коллегам или другому филиалу.</p>
+        <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Передайте этот код коллегам для синхронизации панели склада.</p>
         <input type="text" id="share-code-input" value="STOCKFLOW-CFG-994812-ALMATY" readonly style="width:100%; margin-bottom:16px; font-family:monospace;">
-        <button class="btn btn-primary" style="width:100%; justify-content:center;" onclick="copyShareCode()"><i data-lucide="copy"></i> Скопировать код конфигурации</button>
+        <button class="btn btn-primary" style="width:100%; justify-content:center;" onclick="copyShareCode()"><i data-lucide="copy"></i> Скопировать код</button>
         <button class="btn btn-outline" style="width:100%; justify-content:center; margin-top:8px;" onclick="document.getElementById('share-modal').style.display='none'">Закрыть</button>
     </div>
 </div>
 
 <script>
-    // Tools Catalog Data
+    let currentAuthMode = 'login';
+    let currentUser = null;
+    let favorites = [];
+
     const catalogTools = [
         { id: 1, name: "Автозакуп 24/7", category: "auto", desc: "Автоматическая отправка накладных поставщикам при достижении лимита.", active: true },
         { id: 2, name: "AI Прогноз спроса", category: "analytics", desc: "Анализ сезонности и прошлых списаний для расчета закупок.", active: false },
         { id: 3, name: "Калькулятор доставки", category: "auto", desc: "Оптимизация сборных грузов и стоимости логистики.", active: false },
         { id: 4, name: "Мониторинг излишков", category: "analytics", desc: "Выявление залежавшегося сырья на складе.", active: true }
     ];
-
-    let favorites = [];
 
     const presets = {
         beauty: [
@@ -372,12 +397,68 @@
     let orders = [];
 
     function switchTab(tab) {
-        ['home', 'catalog', 'dashboard', 'profile'].forEach(t => {
-            document.getElementById(`tab-${t}`).style.display = t === tab ? 'block' : 'none';
-            document.getElementById(`tab-${t}-btn`).classList.toggle('active', t === tab);
+        ['home', 'catalog', 'favorites', 'dashboard', 'profile'].forEach(t => {
+            const el = document.getElementById(`tab-${t}`);
+            const btn = document.getElementById(`tab-${t}-btn`);
+            if (el) el.style.display = t === tab ? 'block' : 'none';
+            if (btn) btn.classList.toggle('active', t === tab);
         });
+        if (tab === 'favorites') renderFavorites();
     }
 
+    // AUTH MODAL LOGIC
+    function openAuthModal(mode = 'login') {
+        switchAuthMode(mode);
+        document.getElementById('auth-modal').style.display = 'flex';
+    }
+
+    function closeAuthModal() {
+        document.getElementById('auth-modal').style.display = 'none';
+    }
+
+    function switchAuthMode(mode) {
+        currentAuthMode = mode;
+        document.getElementById('auth-tab-login').classList.toggle('active', mode === 'login');
+        document.getElementById('auth-tab-reg').classList.toggle('active', mode === 'register');
+
+        document.getElementById('field-name').style.display = mode === 'register' ? 'block' : 'none';
+        document.getElementById('field-biz').style.display = mode === 'register' ? 'block' : 'none';
+        document.getElementById('field-model').style.display = mode === 'register' ? 'block' : 'none';
+        document.getElementById('auth-submit-btn').innerText = mode === 'register' ? 'Зарегистрироваться' : 'Войти';
+    }
+
+    function handleAuth(e) {
+        e.preventDefault();
+        const email = document.getElementById('auth-email').value;
+        const name = document.getElementById('auth-name').value || 'Пользователь';
+        const biz = document.getElementById('auth-biz').value;
+        const model = document.getElementById('auth-model').value;
+
+        currentUser = { name: currentAuthMode === 'register' ? name : 'Анна Сергеева', email };
+        
+        document.getElementById('user-display-name').innerText = currentUser.name;
+        document.getElementById('user-display-email').innerText = currentUser.email;
+
+        if (currentAuthMode === 'register') {
+            document.getElementById('business-select').value = biz;
+            document.getElementById('current-model-info').innerHTML = `Модель: <strong>${model}</strong>`;
+            document.getElementById('profile-model-type').innerText = model;
+            changeBusiness();
+        }
+
+        // Header Avatar Update
+        document.getElementById('auth-header-btn').innerHTML = `
+            <div style="display:flex; align-items:center; gap:8px; cursor:pointer;" onclick="switchTab('profile')">
+                <span class="badge badge-success" style="padding:6px 12px;">● ${currentUser.name}</span>
+            </div>
+        `;
+
+        closeAuthModal();
+        switchTab('profile');
+        alert(`Добро пожаловать в StockFlow, ${currentUser.name}!`);
+    }
+
+    // CATALOG & FAVORITES
     function renderCatalog(filter = 'all') {
         const container = document.getElementById('catalog-container');
         container.innerHTML = '';
@@ -390,7 +471,7 @@
                 <div>
                     <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
                         <h4 style="font-size:16px;">${tool.name}</h4>
-                        <i data-lucide="heart" class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav(${tool.id})"></i>
+                        <span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav(${tool.id})">❤️</span>
                     </div>
                     <p style="font-size:12px; color:var(--text-muted); margin-bottom:16px;">${tool.desc}</p>
                 </div>
@@ -403,24 +484,54 @@
         lucide.createIcons();
     }
 
+    function renderFavorites() {
+        const container = document.getElementById('favorites-container');
+        container.innerHTML = '';
+
+        const favTools = catalogTools.filter(t => favorites.includes(t.id));
+        if (favTools.length === 0) {
+            container.innerHTML = `<p style="color:var(--text-muted); grid-column: 1/-1;">У вас пока нет сохраненных инструментов. Нажимайте на ❤️ в каталоге!</p>`;
+            return;
+        }
+
+        favTools.forEach(tool => {
+            const card = document.createElement('div');
+            card.className = 'glass tool-card';
+            card.innerHTML = `
+                <div>
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+                        <h4 style="font-size:16px;">${tool.name}</h4>
+                        <span class="fav-btn active" onclick="toggleFav(${tool.id})">❤️</span>
+                    </div>
+                    <p style="font-size:12px; color:var(--text-muted); margin-bottom:16px;">${tool.desc}</p>
+                </div>
+                <button class="btn btn-primary" style="width:100%; justify-content:center;" onclick="switchTab('dashboard')">Использовать</button>
+            `;
+            container.appendChild(card);
+        });
+        lucide.createIcons();
+    }
+
     function toggleFav(id) {
         if (favorites.includes(id)) favorites = favorites.filter(f => f !== id);
         else favorites.push(id);
         document.getElementById('fav-count').innerText = favorites.length;
         renderCatalog();
+        if (document.getElementById('tab-favorites').style.display === 'block') renderFavorites();
     }
 
     function toggleTool(id) {
         const tool = catalogTools.find(t => t.id === id);
         if (tool) {
             tool.active = !tool.active;
-            alert(tool.active ? `Модуль "${tool.name}" успешно активирован!` : `Модуль "${tool.name}" отключен.`);
+            alert(tool.active ? `Модуль "${tool.name}" активирован!` : `Модуль "${tool.name}" отключен.`);
             renderCatalog();
         }
     }
 
     function filterCatalog(cat) { renderCatalog(cat); }
 
+    // INVENTORY LOGIC
     function renderInventory() {
         const tbody = document.getElementById('inventory-table');
         tbody.innerHTML = '';
@@ -450,7 +561,7 @@
     function simulateDay() {
         inventory.forEach(item => { item.stock = Math.max(0, Math.round((item.stock - item.dailyUse) * 10) / 10); });
         renderInventory();
-        alert('✂️ Рабочая смена завершена. Расходные материалы автоматически списаны.');
+        alert('✂️ Смена закрыта! Сырье автоматически списано.');
     }
 
     function orderItem(name, qty, unit, supplier) {
@@ -479,25 +590,11 @@
         renderInventory();
     }
 
-    // Modal Helpers
-    function openOnboarding() { document.getElementById('onboarding-modal').style.display = 'flex'; }
-    function closeOnboarding() { document.getElementById('onboarding-modal').style.display = 'none'; }
-    function saveOnboarding() {
-        const biz = document.getElementById('onboard-biz').value;
-        const model = document.getElementById('onboard-model').value;
-        document.getElementById('business-select').value = biz;
-        document.getElementById('current-model-info').innerHTML = `Модель учета: <strong>${model}</strong>`;
-        document.getElementById('profile-model-type').innerText = model;
-        changeBusiness();
-        closeOnboarding();
-        alert('AI применил индивидуальные настройки закупок под ваш бизнес!');
-    }
-
-    function calcDeliveryModal() { alert('🚚 Калькулятор сборных грузов: Стоимость доставки вашего текущего дефицита — 4 500 ₸.'); }
+    function calcDeliveryModal() { alert('🚚 Стоимость сборной доставки дефицитных позиций — 4 500 ₸.'); }
     function openShareModal() { document.getElementById('share-modal').style.display = 'flex'; }
     function copyShareCode() {
         navigator.clipboard.writeText(document.getElementById('share-code-input').value);
-        alert('Код конфигурации скопирован!');
+        alert('Код скопирован!');
     }
 
     // Init
@@ -506,5 +603,7 @@
     lucide.createIcons();
 </script>
 
+</body>
+</html>
 </body>
 </html>
