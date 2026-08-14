@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockFlow AI — Intelligent Inventory Platform</title>
+    
+    <!-- Google Fonts & Lucide Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --bg-card: rgba(19, 26, 42, 0.7);
+            --bg-card-hover: rgba(27, 38, 62, 0.8);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(99, 102, 241, 0.3);
+            
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.4);
+            --accent-pink: #ec4899;
+            --accent-cyan: #06b6d4;
+            --danger: #f43f5e;
+            --success: #10b981;
+            --warning: #f59e0b;
+            
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 24px;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(236, 72, 153, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* Glassmorphic Card Style */
+        .glass {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Header Layout */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--primary), var(--accent-pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #fff, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .controls-group {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* Inputs & Selects */
+        select, input {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        select:focus, input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 12px var(--primary-glow);
+        }
+
+        /* Custom Buttons */
+        .btn {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #4f46e5);
+            color: white;
+            box-shadow: 0 4px 15px var(--primary-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--primary-glow);
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent-pink), #db2777);
+            color: white;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.6);
+        }
+
+        /* Telegram Alert Box */
+        .alert-banner {
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 16px;
+            padding: 14px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(8px);
+            animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            margin-top: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        /* Main Table */
+        .table-container {
+            padding: 24px;
+            margin-bottom: 24px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            padding: 12px 16px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        tr:hover td {
+            background: var(--bg-card-hover);
+        }
+
+        /* Badges */
+        .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge-danger {
+            background: rgba(244, 63, 94, 0.15);
+            color: var(--danger);
+            border: 1px solid rgba(244, 63, 94, 0.3);
+        }
+
+        .badge-success {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        /* Add Form Grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo-area">
+            <div class="logo-icon">
+                <i data-lucide="boxes" style="color:white; width:26px; height:26px;"></i>
+            </div>
+            <div class="logo-text">
+                <h1>StockFlow AI</h1>
+                <p>Enterprise Inventory System</p>
+            </div>
+        </div>
+
+        <div class="controls-group">
+            <select id="business-select" onchange="changeBusiness()">
+                <option value="beauty">💄 Салон красоты / Spa</option>
+                <option value="coffee">☕ Сеть кофеен</option>
+                <option value="market">🛒 Ритейл / Маркет</option>
+            </select>
+            <button class="btn btn-accent" onclick="simulateDay()">
+                <i data-lucide="zap"></i> Провести рабочий день
+            </button>
+        </div>
+    </header>
+
+    <!-- Telegram Alert Box -->
+    <div id="alert-box" class="alert-banner">
+        <div style="display:flex; align-items:center; gap:12px;">
+            <i data-lucide="send" style="color:#0ea5e9;"></i>
+            <span><strong>Telegram Bot:</strong> <span id="alert-text">Система активна. Анализ остатков проведен.</span></span>
+        </div>
+        <i data-lucide="x" style="cursor:pointer; color:var(--text-muted);" onclick="document.getElementById('alert-box').style.display='none'"></i>
+    </div>
+
+    <!-- Analytics Dashboard Cards -->
+    <div class="stats-grid">
+        <div class="glass stat-card">
+            <div class="stat-label">Всего позиций на складе</div>
+            <div class="stat-value" id="stat-total">0</div>
+        </div>
+        <div class="glass stat-card">
+            <div class="stat-label">Дефицитные товары (Требуют заказа)</div>
+            <div class="stat-value" style="color: var(--danger);" id="stat-low">0</div>
+        </div>
+        <div class="glass stat-card">
+            <div class="stat-label">Общая оценка склада</div>
+            <div class="stat-value" style="color: var(--success);" id="stat-value">0 ₸</div>
+        </div>
+        <div class="glass stat-card">
+            <div class="stat-label">Прогнозируемый расход</div>
+            <div class="stat-value" style="color: var(--accent-cyan);" id="stat-daily">0 / день</div>
+        </div>
+    </div>
+
+    <!-- Inventory Table Card -->
+    <div class="glass table-container">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+            <h3 style="font-size:18px; font-weight:700;">📦 Автоматический учет & Закупки на 30 дней</h3>
+            <span class="badge badge-success"><i data-lucide="shield-check" style="width:14px;"></i> AI Sync Active</span>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Статус</th>
+                    <th>Наименование</th>
+                    <th>Остаток</th>
+                    <th>Расход / день</th>
+                    <th>Заказ на месяц (+20%)</th>
+                    <th>Автоматизация</th>
+                </tr>
+            </thead>
+            <tbody id="inventory-table"></tbody>
+        </table>
+    </div>
+
+    <!-- Quick Item Add Form -->
+    <div class="glass" style="padding:24px; margin-bottom:24px;">
+        <h4 style="font-size:16px; margin-bottom:4px;">➕ Быстрое добавление позиции</h4>
+        <p style="font-size:13px; color:var(--text-muted);">Внесите новый товар в баз данных для отслеживания расхода.</p>
+        
+        <div class="form-grid">
+            <input type="text" id="new-name" placeholder="Название товара">
+            <input type="number" id="new-stock" placeholder="Текущий остаток">
+            <input type="number" id="new-min" placeholder="Мин. лимит">
+            <input type="number" id="new-daily" placeholder="Расход в день" step="0.1">
+            <input type="text" id="new-unit" placeholder="Ед. изм. (шт, кг)">
+            <input type="text" id="new-supplier" placeholder="Поставщик">
+            <button class="btn btn-primary" onclick="addItem()">
+                <i data-lucide="plus"></i> Сохранить
+            </button>
+        </div>
+    </div>
+
+    <!-- Order Logs Section -->
+    <div class="glass" id="orders-card" style="padding:24px; display:none;">
+        <h4 style="font-size:16px; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+            <i data-lucide="truck" style="color:var(--primary);"></i> Сформированные заказы поставщикам
+        </h4>
+        <div id="orders-list" style="display:flex; flex-direction:column; gap:8px;"></div>
+    </div>
+
+</div>
+
+<script>
+    const presets = {
+        beauty: [
+            { id: 1, name: "Шампунь глубокой очистки (1л)", stock: 2, minStock: 3, unit: "шт", dailyUse: 0.2, price: 4500, supplier: "L'Oreal Prof" },
+            { id: 2, name: "Краска для волос #6.0 (60мл)", stock: 4, minStock: 10, unit: "шт", dailyUse: 1.2, price: 1800, supplier: "Estel Pro" },
+            { id: 3, name: "Оксигент 6% (1л)", stock: 8, minStock: 4, unit: "шт", dailyUse: 0.3, price: 2500, supplier: "Estel Pro" },
+            { id: 4, name: "Одноразовые пеньюары (100шт)", stock: 150, minStock: 50, unit: "шт", dailyUse: 10, price: 3200, supplier: "BeautyPack" }
+        ],
+        coffee: [
+            { id: 1, name: "Кофейное зерно Arabica (1кг)", stock: 3, minStock: 5, unit: "кг", dailyUse: 0.8, price: 8500, supplier: "Tasty Coffee" },
+            { id: 2, name: "Молоко 3.2% (1л)", stock: 12, minStock: 20, unit: "шт", dailyUse: 15, price: 550, supplier: "ФудМастер" },
+            { id: 3, name: "Стаканчики 350мл (50шт)", stock: 80, minStock: 100, unit: "шт", dailyUse: 45, price: 1200, supplier: "PackService" },
+            { id: 4, name: "Сироп Соленая Карамель (1л)", stock: 1, minStock: 2, unit: "шт", dailyUse: 0.1, price: 3800, supplier: "Monin" }
+        ],
+        market: [
+            { id: 1, name: "Вода без газа 0.5л", stock: 24, minStock: 50, unit: "шт", dailyUse: 15, price: 180, supplier: "Tassay" },
+            { id: 2, name: "Хлеб формовой", stock: 5, minStock: 10, unit: "шт", dailyUse: 8, price: 200, supplier: "Пекарня №1" },
+            { id: 3, name: "Шоколад молочный 90г", stock: 18, minStock: 15, unit: "шт", dailyUse: 3, price: 450, supplier: "Рахат" }
+        ]
+    };
+
+    let inventory = [...presets.beauty];
+    let orders = [];
+
+    function render() {
+        const tbody = document.getElementById('inventory-table');
+        tbody.innerHTML = '';
+
+        let totalItems = inventory.length;
+        let lowItems = 0;
+        let totalValue = 0;
+        let totalDaily = 0;
+
+        inventory.forEach(item => {
+            const isLow = item.stock <= item.minStock;
+            if (isLow) lowItems++;
+            totalValue += item.stock * item.price;
+            totalDaily += item.dailyUse;
+
+            const monthlyNeed = Math.ceil((item.dailyUse * 30) * 1.2);
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>
+                    <span class="badge ${isLow ? 'badge-danger' : 'badge-success'}">
+                        ${isLow ? '🔴 Дефицит' : '🟢 В норме'}
+                    </span>
+                </td>
+                <td>
+                    <strong>${item.name}</strong><br>
+                    <small style="color:var(--text-muted); font-size:12px;">${item.supplier} • ${item.price} ₸</small>
+                </td>
+                <td><strong style="font-size:16px;">${item.stock}</strong> ${item.unit}</td>
+                <td style="color:var(--text-muted);">~${item.dailyUse} ${item.unit}/день</td>
+                <td><strong style="color:var(--primary); font-size:15px;">${monthlyNeed} ${item.unit}</strong></td>
+                <td>
+                    <button class="btn btn-primary" style="padding: 6px 14px; font-size:12px;" onclick="order(${item.id}, '${item.name}', ${monthlyNeed}, '${item.unit}', '${item.supplier}')">
+                        <i data-lucide="shopping-cart" style="width:14px;"></i> Заказать
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        document.getElementById('stat-total').innerText = totalItems;
+        document.getElementById('stat-low').innerText = lowItems;
+        document.getElementById('stat-value').innerText = totalValue.toLocaleString() + ' ₸';
+        document.getElementById('stat-daily').innerText = totalDaily.toFixed(1) + ' ед/день';
+
+        lucide.createIcons();
+    }
+
+    function changeBusiness() {
+        const type = document.getElementById('business-select').value;
+        inventory = [...presets[type]];
+        orders = [];
+        document.getElementById('orders-card').style.display = 'none';
+        triggerAlert(`Смена категории! Загружены складские данные.`);
+        render();
+    }
+
+    function simulateDay() {
+        inventory.forEach(item => {
+            item.stock = Math.max(0, Math.round((item.stock - item.dailyUse) * 10) / 10);
+        });
+        triggerAlert(`✂️ Рабочая смена закрыта! Материалы автоматически списаны со склада.`);
+        render();
+    }
+
+    function order(id, name, qty, unit, supplier) {
+        const orderId = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
+        orders.unshift({ id: orderId, name, qty, unit, supplier, time: new Date().toLocaleTimeString() });
+        
+        triggerAlert(`🚚 Заявка #${orderId} отправлена поставщику "${supplier}" на ${qty} ${unit}!`);
+
+        const ordersCard = document.getElementById('orders-card');
+        const ordersList = document.getElementById('orders-list');
+        ordersCard.style.display = 'block';
+        
+        ordersList.innerHTML = orders.map(o => `
+            <div style="background:rgba(15,23,42,0.4); border:1px solid var(--border); padding:12px 16px; border-radius:12px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+                <div><strong>${o.id}</strong> — Заказ ${o.qty} ${o.unit} <em>"${o.name}"</em> (${o.supplier})</div>
+                <div style="color:var(--success); font-weight:700;">● Отправлен в ${o.time}</div>
+            </div>
+        `).join('');
+        
+        render();
+    }
+
+    function addItem() {
+        const name = document.getElementById('new-name').value;
+        const stock = parseFloat(document.getElementById('new-stock').value) || 0;
+        const minStock = parseFloat(document.getElementById('new-min').value) || 0;
+        const dailyUse = parseFloat(document.getElementById('new-daily').value) || 0.1;
+        const unit = document.getElementById('new-unit').value || 'шт';
+        const supplier = document.getElementById('new-supplier').value || 'Общий поставщик';
+
+        if (!name) { alert('Введите название!'); return; }
+
+        inventory.push({ id: Date.now(), name, stock, minStock, dailyUse, unit, supplier, price: 1500 });
+        
+        document.getElementById('new-name').value = '';
+        document.getElementById('new-stock').value = '';
+        document.getElementById('new-min').value = '';
+        document.getElementById('new-daily').value = '';
+        document.getElementById('new-unit').value = '';
+        document.getElementById('new-supplier').value = '';
+
+        triggerAlert(`✅ Товар "${name}" добавлен в базу.`);
+        render();
+    }
+
+    function triggerAlert(text) {
+        const box = document.getElementById('alert-box');
+        document.getElementById('alert-text').innerText = text;
+        box.style.display = 'flex';
+    }
+
+    render();
+</script>
+
+</body>
+</html>
