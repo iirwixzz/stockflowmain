@@ -13,6 +13,7 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
+
 :root{
     --bg-dark:#090d16;
     --bg-card:rgba(19,26,42,.88);
@@ -42,15 +43,28 @@
 body{
     min-height:100vh;
     padding:20px;
+
     color:var(--text);
+
     background:
-        radial-gradient(circle at 10% 10%,rgba(99,102,241,.18),transparent 45%),
-        radial-gradient(circle at 90% 85%,rgba(236,72,153,.15),transparent 45%),
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(99,102,241,.18),
+            transparent 45%
+        ),
+        radial-gradient(
+            circle at 90% 85%,
+            rgba(236,72,153,.15),
+            transparent 45%
+        ),
         var(--bg-dark);
+
     background-attachment:fixed;
 }
 
-button,input,select{
+button,
+input,
+select{
     font:inherit;
 }
 
@@ -67,16 +81,23 @@ button{
 .glass{
     background:var(--bg-card);
     backdrop-filter:blur(20px);
+
     border:1px solid var(--border);
     border-radius:20px;
-    box-shadow:0 8px 32px rgba(0,0,0,.45);
+
+    box-shadow:
+        0 8px 32px rgba(0,0,0,.45);
 }
 
-/* LOGIN */
+
+/* =====================================================
+   LOGIN
+===================================================== */
 
 .login-screen{
     position:fixed;
     inset:0;
+
     z-index:10000;
 
     display:flex;
@@ -86,6 +107,7 @@ button{
     padding:20px;
 
     background:rgba(9,13,22,.96);
+
     backdrop-filter:blur(15px);
 }
 
@@ -99,34 +121,49 @@ button{
     font-size:28px;
     font-weight:800;
 
-    background:linear-gradient(to right,#fff,var(--muted));
+    background:
+        linear-gradient(
+            to right,
+            #fff,
+            var(--muted)
+        );
+
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
 
 .login-description{
     max-width:370px;
+
     margin:8px auto 0;
 
     color:var(--muted);
+
     font-size:12px;
     line-height:1.55;
 }
 
-/* HEADER */
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 header{
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     flex-wrap:wrap;
+
     gap:16px;
+
     margin-bottom:24px;
 }
 
 .logo-area{
     display:flex;
     align-items:center;
+
     gap:12px;
 }
 
@@ -140,37 +177,59 @@ header{
 
     border-radius:14px;
 
-    background:linear-gradient(135deg,var(--primary),var(--pink));
-    box-shadow:0 0 20px var(--primary-glow);
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--pink)
+        );
+
+    box-shadow:
+        0 0 20px var(--primary-glow);
 }
 
 .logo-text h1{
     font-size:22px;
     font-weight:800;
 
-    background:linear-gradient(to right,#fff,var(--muted));
+    background:
+        linear-gradient(
+            to right,
+            #fff,
+            var(--muted)
+        );
+
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
 
 .logo-text p{
     color:var(--cyan);
+
     font-size:10px;
     font-weight:700;
+
     letter-spacing:1px;
     text-transform:uppercase;
 }
 
-/* NAV */
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
 .nav-tabs{
     display:flex;
+
     gap:6px;
+
     padding:5px;
+
     overflow-x:auto;
 
     border:1px solid var(--border);
     border-radius:16px;
+
     background:rgba(15,23,42,.7);
 }
 
@@ -178,11 +237,13 @@ header{
     display:flex;
     align-items:center;
     justify-content:center;
+
     gap:8px;
 
     padding:9px 16px;
 
     color:var(--muted);
+
     background:transparent;
 
     border:0;
@@ -190,6 +251,7 @@ header{
 
     font-size:13px;
     font-weight:600;
+
     white-space:nowrap;
 
     transition:.2s;
@@ -201,16 +263,24 @@ header{
 
 .tab-btn.active{
     color:white;
+
     background:var(--primary);
-    box-shadow:0 4px 15px var(--primary-glow);
+
+    box-shadow:
+        0 4px 15px var(--primary-glow);
 }
 
-/* BUTTONS */
+
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 .btn{
     display:inline-flex;
+
     align-items:center;
     justify-content:center;
+
     gap:8px;
 
     padding:10px 18px;
@@ -231,25 +301,45 @@ header{
 
 .btn-primary{
     color:white;
-    background:linear-gradient(135deg,var(--primary),#4f46e5);
-    box-shadow:0 4px 15px var(--primary-glow);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #4f46e5
+        );
+
+    box-shadow:
+        0 4px 15px var(--primary-glow);
 }
 
 .btn-accent{
     color:white;
-    background:linear-gradient(135deg,var(--pink),#db2777);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            #db2777
+        );
 }
 
 .btn-outline{
     color:var(--text);
+
     background:rgba(255,255,255,.05);
+
     border:1px solid var(--border);
 }
 
 .btn-success{
     color:#34d399;
+
     background:rgba(16,185,129,.14);
-    border:1px solid rgba(16,185,129,.3);
+
+    border:
+        1px solid
+        rgba(16,185,129,.3);
 }
 
 .btn:disabled{
@@ -257,32 +347,48 @@ header{
     cursor:not-allowed;
 }
 
-/* INPUTS */
 
-input,select{
+/* =====================================================
+   INPUTS
+===================================================== */
+
+input,
+select{
     width:100%;
+
     padding:12px 14px;
 
     color:var(--text);
+
     background:rgba(15,23,42,.8);
 
     border:1px solid var(--border);
+
     border-radius:12px;
 
     outline:none;
+
     font-size:13px;
 }
 
-input:focus,select:focus{
+input:focus,
+select:focus{
     border-color:var(--primary);
-    box-shadow:0 0 10px var(--primary-glow);
+
+    box-shadow:
+        0 0 10px var(--primary-glow);
 }
 
-/* BADGES */
+
+/* =====================================================
+   BADGES
+===================================================== */
 
 .badge{
     display:inline-flex;
+
     align-items:center;
+
     gap:5px;
 
     padding:5px 10px;
@@ -291,28 +397,119 @@ input:focus,select:focus{
 
     font-size:11px;
     font-weight:700;
+
     white-space:nowrap;
 }
 
 .badge-danger{
     color:#fb7185;
+
     background:rgba(244,63,94,.15);
-    border:1px solid rgba(244,63,94,.3);
+
+    border:
+        1px solid
+        rgba(244,63,94,.3);
 }
 
 .badge-warning{
     color:#fbbf24;
+
     background:rgba(245,158,11,.15);
-    border:1px solid rgba(245,158,11,.3);
+
+    border:
+        1px solid
+        rgba(245,158,11,.3);
 }
 
 .badge-success{
     color:#34d399;
+
     background:rgba(16,185,129,.15);
-    border:1px solid rgba(16,185,129,.3);
+
+    border:
+        1px solid
+        rgba(16,185,129,.3);
 }
 
-/* TABLE */
+
+/* =====================================================
+   DASHBOARD STATS
+===================================================== */
+
+.dashboard-stats{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:16px;
+
+    margin-bottom:20px;
+}
+
+.dashboard-stat{
+    padding:18px 20px;
+}
+
+.dashboard-stat-label{
+    color:var(--muted);
+
+    font-size:11px;
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+}
+
+.dashboard-stat-value{
+    margin-top:7px;
+
+    color:var(--cyan);
+
+    font-size:25px;
+    font-weight:800;
+}
+
+.dashboard-stat-value.danger{
+    color:#fb7185;
+}
+
+.dashboard-stat-value.success{
+    color:#34d399;
+}
+
+.dashboard-stat-note{
+    margin-top:4px;
+
+    color:var(--muted);
+
+    font-size:10px;
+}
+
+
+/* =====================================================
+   ADD PRODUCT
+===================================================== */
+
+.add-product-card{
+    margin-top:20px;
+    padding:20px;
+}
+
+.add-product-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:9px;
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
 
 .table-wrapper{
     width:100%;
@@ -328,21 +525,28 @@ th{
     padding:12px 16px;
 
     color:var(--muted);
-    border-bottom:1px solid var(--border);
+
+    border-bottom:
+        1px solid
+        var(--border);
 
     font-size:11px;
     font-weight:700;
 
     text-transform:uppercase;
+
     white-space:nowrap;
 }
 
 td{
     padding:14px 16px;
 
-    border-bottom:1px solid var(--border);
+    border-bottom:
+        1px solid
+        var(--border);
 
     font-size:13px;
+
     vertical-align:middle;
 }
 
@@ -350,10 +554,14 @@ tr:last-child td{
     border-bottom:none;
 }
 
-/* TIMER */
+
+/* =====================================================
+   TIMER
+===================================================== */
 
 .timer-tag{
     display:inline-flex;
+
     align-items:center;
     justify-content:center;
 
@@ -362,12 +570,17 @@ tr:last-child td{
     padding:7px 10px;
 
     color:var(--cyan);
+
     background:rgba(6,182,212,.1);
 
-    border:1px solid rgba(6,182,212,.25);
+    border:
+        1px solid
+        rgba(6,182,212,.25);
+
     border-radius:8px;
 
     font-family:monospace;
+
     font-size:12px;
     font-weight:700;
 
@@ -376,15 +589,25 @@ tr:last-child td{
 
 .timer-finished{
     color:#34d399;
+
     background:rgba(16,185,129,.1);
-    border-color:rgba(16,185,129,.25);
+
+    border-color:
+        rgba(16,185,129,.25);
 }
 
-/* PROFILE */
+
+/* =====================================================
+   PROFILE
+===================================================== */
 
 .profile-grid{
     display:grid;
-    grid-template-columns:minmax(260px,1fr) minmax(0,2fr);
+
+    grid-template-columns:
+        minmax(260px,1fr)
+        minmax(0,2fr);
+
     gap:20px;
 }
 
@@ -404,18 +627,31 @@ tr:last-child td{
 
     border-radius:50%;
 
-    background:linear-gradient(135deg,var(--primary),var(--pink));
-    box-shadow:0 0 20px var(--primary-glow);
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--pink)
+        );
+
+    box-shadow:
+        0 0 20px var(--primary-glow);
 }
 
-/* NOTIFICATIONS */
+
+/* =====================================================
+   NOTIFICATIONS
+===================================================== */
 
 .profile-notifications{
     display:flex;
+
     flex-direction:column;
+
     gap:8px;
 
     max-height:430px;
+
     overflow-y:auto;
 }
 
@@ -425,14 +661,20 @@ tr:last-child td{
     border-radius:10px;
 
     background:rgba(255,255,255,.04);
-    border:1px solid var(--border);
 
-    animation:notificationIn .25s ease;
+    border:
+        1px solid
+        var(--border);
+
+    animation:
+        notificationIn .25s ease;
 }
 
 .notification-title{
     display:flex;
+
     align-items:center;
+
     gap:8px;
 
     font-size:12px;
@@ -443,6 +685,7 @@ tr:last-child td{
     margin-top:4px;
 
     color:var(--muted);
+
     font-size:11px;
     line-height:1.5;
 }
@@ -451,14 +694,24 @@ tr:last-child td{
     margin-top:5px;
 
     color:var(--muted);
+
     font-size:10px;
 }
 
-/* CATALOG */
+
+/* =====================================================
+   CATALOG
+===================================================== */
 
 .catalog-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(280px,1fr)
+        );
+
     gap:20px;
 }
 
@@ -466,48 +719,73 @@ tr:last-child td{
     min-height:190px;
 
     display:flex;
+
     flex-direction:column;
+
     justify-content:space-between;
+
     gap:15px;
 
     padding:22px;
 }
 
-/* ORDERS */
+
+/* =====================================================
+   ORDERS
+===================================================== */
 
 .order-card{
     padding:12px 0;
-    border-bottom:1px solid var(--border);
+
+    border-bottom:
+        1px solid
+        var(--border);
 }
 
 .order-card:last-child{
     border-bottom:0;
 }
 
-/* TOAST */
+
+/* =====================================================
+   TOAST
+===================================================== */
 
 #notification-container{
     position:fixed;
+
     right:20px;
     bottom:20px;
 
     z-index:20000;
 
-    width:min(360px,calc(100vw - 40px));
+    width:
+        min(
+            360px,
+            calc(100vw - 40px)
+        );
 
     display:flex;
+
     flex-direction:column;
+
     gap:10px;
 }
 
 .toast{
     padding:14px 16px;
-    animation:notificationIn .25s ease;
+
+    animation:
+        notificationIn .25s ease;
 }
 
-/* ANIMATION */
+
+/* =====================================================
+   ANIMATION
+===================================================== */
 
 @keyframes notificationIn{
+
     from{
         opacity:0;
         transform:translateY(8px);
@@ -517,11 +795,27 @@ tr:last-child td{
         opacity:1;
         transform:translateY(0);
     }
+
 }
 
-/* MOBILE */
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
 @media(max-width:900px){
+
+    .dashboard-stats{
+        grid-template-columns:1fr;
+    }
+
+    .add-product-grid{
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0,1fr)
+            );
+    }
 
     .nav-tabs{
         order:3;
@@ -531,6 +825,7 @@ tr:last-child td{
     .profile-grid{
         grid-template-columns:1fr;
     }
+
 }
 
 @media(max-width:650px){
@@ -547,57 +842,93 @@ tr:last-child td{
         display:none;
     }
 
-    th,td{
+    .add-product-grid{
+        grid-template-columns:1fr;
+    }
+
+    th,
+    td{
         padding:10px 8px;
     }
 
 }
+
 </style>
 </head>
 
 <body>
 
+
 <!-- =====================================================
      АВТОРИЗАЦИЯ
 ===================================================== -->
 
-<div class="login-screen" id="login-overlay">
+<div
+    class="login-screen"
+    id="login-overlay"
+>
 
     <div class="glass login-box">
 
-        <div style="text-align:center;margin-bottom:24px;">
+        <div
+            style="
+                text-align:center;
+                margin-bottom:24px;
+            "
+        >
 
             <div
                 class="logo-icon"
-                style="width:54px;height:54px;margin:0 auto 12px;"
+                style="
+                    width:54px;
+                    height:54px;
+                    margin:0 auto 12px;
+                "
             >
-                <i data-lucide="layers" style="width:28px;"></i>
+                <i
+                    data-lucide="layers"
+                    style="width:28px;"
+                ></i>
             </div>
+
 
             <div class="login-logo">
                 StockFlow
             </div>
 
-            <h2 style="font-size:20px;margin-top:5px;">
+
+            <h2
+                style="
+                    font-size:20px;
+                    margin-top:5px;
+                "
+            >
                 Личный кабинет
             </h2>
 
-            <p class="login-description">
-                Владельцы и управляющие малого бизнеса:
-                кофеен, салонов красоты, магазинов и других
-                заведений с регулярным расходом товаров.
-            </p>
 
             <p class="login-description">
-                Сайт помогает контролировать остатки,
-                выявлять дефицит и управлять заказами и поставками.
+                Целевая аудитория сайта — владельцы и управляющие малого бизнеса: кофеен, салонов красоты, магазинов и других заведений с регулярным расходом товаров. Сайт помогает контролировать остатки, быстро выявлять дефицит и управлять заказами и поставками.
+            </p>
+
+
+            <p class="login-description">
+                Введите данные для входа в систему
             </p>
 
         </div>
 
+
         <form onsubmit="handleLogin(event)">
 
-            <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:20px;">
+            <div
+                style="
+                    display:flex;
+                    flex-direction:column;
+                    gap:14px;
+                    margin-bottom:20px;
+                "
+            >
 
                 <div>
 
@@ -621,6 +952,7 @@ tr:last-child td{
 
                 </div>
 
+
                 <div>
 
                     <label
@@ -642,6 +974,7 @@ tr:last-child td{
                     >
 
                 </div>
+
 
                 <div>
 
@@ -676,13 +1009,23 @@ tr:last-child td{
 
             </div>
 
+
             <button
                 class="btn btn-primary"
                 type="submit"
-                style="width:100%;padding:13px;"
+                style="
+                    width:100%;
+                    padding:13px;
+                "
             >
+
                 Войти в кабинет
-                <i data-lucide="arrow-right" style="width:16px;"></i>
+
+                <i
+                    data-lucide="arrow-right"
+                    style="width:16px;"
+                ></i>
+
             </button>
 
         </form>
@@ -702,17 +1045,26 @@ tr:last-child td{
     style="display:none;"
 >
 
+
 <header>
 
     <div class="logo-area">
 
         <div class="logo-icon">
-            <i data-lucide="layers" style="width:24px;"></i>
+
+            <i
+                data-lucide="layers"
+                style="width:24px;"
+            ></i>
+
         </div>
+
 
         <div class="logo-text">
 
-            <h1>StockFlow</h1>
+            <h1>
+                StockFlow
+            </h1>
 
             <p>
                 Smart Inventory Tracking
@@ -730,26 +1082,46 @@ tr:last-child td{
             id="tab-profile-btn"
             onclick="switchTab('profile')"
         >
-            <i data-lucide="user" style="width:15px;"></i>
+
+            <i
+                data-lucide="user"
+                style="width:15px;"
+            ></i>
+
             Личный кабинет
+
         </button>
+
 
         <button
             class="tab-btn"
             id="tab-dashboard-btn"
             onclick="switchTab('dashboard')"
         >
-            <i data-lucide="layout-dashboard" style="width:15px;"></i>
+
+            <i
+                data-lucide="layout-dashboard"
+                style="width:15px;"
+            ></i>
+
             Учет склада
+
         </button>
+
 
         <button
             class="tab-btn"
             id="tab-catalog-btn"
             onclick="switchTab('catalog')"
         >
-            <i data-lucide="grid" style="width:15px;"></i>
+
+            <i
+                data-lucide="grid"
+                style="width:15px;"
+            ></i>
+
             Каталог инструментов
+
         </button>
 
     </div>
@@ -768,17 +1140,25 @@ tr:last-child td{
 
 <div class="profile-grid">
 
+
     <div class="glass profile-card">
 
         <div style="text-align:center;">
 
             <div class="avatar">
-                <i data-lucide="user-check" style="width:34px;"></i>
+
+                <i
+                    data-lucide="user-check"
+                    style="width:34px;"
+                ></i>
+
             </div>
+
 
             <h3 id="user-profile-name">
                 Пользователь
             </h3>
+
 
             <p
                 id="user-profile-email"
@@ -803,34 +1183,53 @@ tr:last-child td{
                 margin-top:20px;
                 padding-top:18px;
 
-                border-top:1px solid var(--border);
+                border-top:
+                    1px solid
+                    var(--border);
 
                 font-size:13px;
             "
         >
 
             <div>
-                <strong>Сфера бизнеса:</strong>
+
+                <strong>
+                    Сфера бизнеса:
+                </strong>
+
                 <span
                     id="user-profile-biz"
                     style="color:var(--cyan);"
                 >
                     —
                 </span>
+
             </div>
 
+
             <div>
-                <strong>Модель учета:</strong>
+
+                <strong>
+                    Модель учета:
+                </strong>
+
                 <span style="color:var(--cyan);">
                     FIFO
                 </span>
+
             </div>
 
+
             <div>
-                <strong>Статус:</strong>
+
+                <strong>
+                    Статус:
+                </strong>
+
                 <span style="color:var(--success);">
                     ● Авторизован
                 </span>
+
             </div>
 
         </div>
@@ -839,20 +1238,38 @@ tr:last-child td{
         <button
             class="btn btn-outline"
             onclick="logout()"
-            style="width:100%;margin-top:22px;"
+            style="
+                width:100%;
+                margin-top:22px;
+            "
         >
-            <i data-lucide="log-out" style="width:16px;"></i>
+
+            <i
+                data-lucide="log-out"
+                style="width:16px;"
+            ></i>
+
             Выйти из кабинета
+
         </button>
 
     </div>
 
 
-    <div style="display:flex;flex-direction:column;gap:20px;">
+    <div
+        style="
+            display:flex;
+            flex-direction:column;
+            gap:20px;
+        "
+    >
 
         <!-- УВЕДОМЛЕНИЯ -->
 
-        <div class="glass" style="padding:20px;">
+        <div
+            class="glass"
+            style="padding:20px;"
+        >
 
             <h3
                 style="
@@ -866,8 +1283,14 @@ tr:last-child td{
                     font-size:16px;
                 "
             >
-                <i data-lucide="bell" style="width:18px;"></i>
+
+                <i
+                    data-lucide="bell"
+                    style="width:18px;"
+                ></i>
+
                 Уведомления личного кабинета
+
             </h3>
 
 
@@ -895,7 +1318,10 @@ tr:last-child td{
 
         <!-- ЗАКАЗЫ -->
 
-        <div class="glass" style="padding:20px;">
+        <div
+            class="glass"
+            style="padding:20px;"
+        >
 
             <h3
                 style="
@@ -905,6 +1331,7 @@ tr:last-child td{
             >
                 🚚 История заказов
             </h3>
+
 
             <div
                 id="orders-list"
@@ -934,87 +1361,314 @@ tr:last-child td{
     style="display:none;"
 >
 
+
+<div
+    class="glass"
+    style="
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+
+        flex-wrap:wrap;
+
+        gap:12px;
+
+        padding:16px 20px;
+
+        margin-bottom:20px;
+    "
+>
+
+    <div>
+
+        <strong style="font-size:14px;">
+            Текущий склад:
+        </strong>
+
+        <span
+            class="badge badge-success"
+            id="active-biz-label"
+            style="margin-left:7px;"
+        >
+            —
+        </span>
+
+    </div>
+
+
+    <button
+        class="btn btn-accent"
+        onclick="simulateDay()"
+    >
+
+        <i
+            data-lucide="fast-forward"
+            style="width:15px;"
+        ></i>
+
+        Списать смену
+
+    </button>
+
+</div>
+
+
+<!-- СТАТИСТИКА -->
+
+<div class="dashboard-stats">
+
+
+    <div class="glass dashboard-stat">
+
+        <div class="dashboard-stat-label">
+            Всего позиций
+        </div>
+
+        <div
+            class="dashboard-stat-value"
+            id="total-positions"
+        >
+            0
+        </div>
+
+        <div class="dashboard-stat-note">
+            Товаров в базе склада
+        </div>
+
+    </div>
+
+
+    <div class="glass dashboard-stat">
+
+        <div class="dashboard-stat-label">
+            Дефицит товаров
+        </div>
+
+        <div
+            class="dashboard-stat-value danger"
+            id="deficit-count"
+        >
+            0
+        </div>
+
+        <div class="dashboard-stat-note">
+            Ниже минимального остатка
+        </div>
+
+    </div>
+
+
+    <div class="glass dashboard-stat">
+
+        <div class="dashboard-stat-label">
+            Оценочная стоимость склада
+        </div>
+
+        <div
+            class="dashboard-stat-value success"
+            id="warehouse-value"
+        >
+            0 ₸
+        </div>
+
+        <div class="dashboard-stat-note">
+            Остаток × цена за единицу
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ТАБЛИЦА -->
+
+<div
+    class="glass"
+    style="
+        padding:24px;
+        overflow:hidden;
+    "
+>
+
+    <h3
+        style="
+            margin-bottom:16px;
+            font-size:17px;
+        "
+    >
+        📦 Учет товаров и сырья
+    </h3>
+
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Статус
+                    </th>
+
+                    <th>
+                        Товар / Сырье
+                    </th>
+
+                    <th>
+                        Остаток
+                    </th>
+
+                    <th>
+                        Цена
+                    </th>
+
+                    <th>
+                        Расход/день
+                    </th>
+
+                    <th>
+                        Заказ на месяц (+20%)
+                    </th>
+
+                    <th>
+                        Таймер доставки
+                    </th>
+
+                    <th>
+                        Действие
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="inventory-table"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- ДОБАВЛЕНИЕ ТОВАРА -->
+
+<div
+    class="glass add-product-card"
+>
+
     <div
-        class="glass"
         style="
             display:flex;
             align-items:center;
             justify-content:space-between;
-            flex-wrap:wrap;
             gap:12px;
-            padding:16px 20px;
-            margin-bottom:20px;
+            flex-wrap:wrap;
+            margin-bottom:14px;
         "
     >
 
         <div>
 
-            <strong style="font-size:14px;">
-                Текущий склад:
-            </strong>
+            <h3 style="font-size:16px;">
+                ＋ Добавить новый товар в базу
+            </h3>
 
-            <span
-                class="badge badge-success"
-                id="active-biz-label"
-                style="margin-left:7px;"
+            <p
+                style="
+                    margin-top:4px;
+                    color:var(--muted);
+                    font-size:11px;
+                "
             >
-                —
-            </span>
+                Новый товар сразу попадёт в учет,
+                статистику и расчёт стоимости склада.
+            </p>
 
         </div>
-
-
-        <button
-            class="btn btn-accent"
-            onclick="simulateDay()"
-        >
-            <i data-lucide="fast-forward" style="width:15px;"></i>
-            Списать смену
-        </button>
 
     </div>
 
 
-    <div
-        class="glass"
-        style="padding:24px;overflow:hidden;"
+    <div class="add-product-grid">
+
+        <input
+            id="new-product-name"
+            placeholder="Название товара"
+        >
+
+        <input
+            id="new-product-stock"
+            type="number"
+            min="0"
+            step="0.1"
+            placeholder="Количество"
+        >
+
+        <input
+            id="new-product-min"
+            type="number"
+            min="0"
+            step="0.1"
+            placeholder="Мин. остаток"
+        >
+
+        <input
+            id="new-product-price"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="Цена, ₸"
+        >
+
+        <input
+            id="new-product-daily"
+            type="number"
+            min="0"
+            step="0.1"
+            placeholder="Расход/день"
+        >
+
+        <input
+            id="new-product-unit"
+            placeholder="Ед. изм."
+        >
+
+        <input
+            id="new-product-supplier"
+            placeholder="Поставщик"
+        >
+
+        <input
+            id="new-product-delivery"
+            type="number"
+            min="1"
+            step="1"
+            placeholder="Доставка, ч"
+        >
+
+    </div>
+
+
+    <button
+        class="btn btn-primary"
+        style="margin-top:12px;"
+        onclick="addProduct()"
     >
 
-        <h3
-            style="
-                margin-bottom:16px;
-                font-size:17px;
-            "
-        >
-            📦 Учет товаров и сырья
-        </h3>
+        <i
+            data-lucide="plus"
+            style="width:15px;"
+        ></i>
 
+        Добавить товар
 
-        <div class="table-wrapper">
+    </button>
 
-            <table>
-
-                <thead>
-
-                    <tr>
-                        <th>Статус</th>
-                        <th>Товар / Сырье</th>
-                        <th>Остаток</th>
-                        <th>Расход/день</th>
-                        <th>Заказ на месяц (+20%)</th>
-                        <th>Таймер доставки</th>
-                        <th>Действие</th>
-                    </tr>
-
-                </thead>
-
-                <tbody id="inventory-table"></tbody>
-
-            </table>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
@@ -1062,13 +1716,15 @@ tr:last-child td{
 
 <script>
 
+
 /* =====================================================
    ДАННЫЕ
 ===================================================== */
 
-const presets = {
+const presets={
 
     coffee:[
+
         {
             id:1,
             name:"Кофейное зерно Arabica (1кг)",
@@ -1077,8 +1733,10 @@ const presets = {
             unit:"кг",
             dailyUse:.8,
             supplier:"Tasty Coffee",
-            deliveryHours:24
+            deliveryHours:24,
+            price:9500
         },
+
         {
             id:2,
             name:"Молоко 3.2% (1л)",
@@ -1087,8 +1745,10 @@ const presets = {
             unit:"шт",
             dailyUse:12,
             supplier:"ФудМастер",
-            deliveryHours:2
+            deliveryHours:2,
+            price:450
         },
+
         {
             id:3,
             name:"Сироп Карамель (1л)",
@@ -1097,8 +1757,10 @@ const presets = {
             unit:"шт",
             dailyUse:.4,
             supplier:"Monin",
-            deliveryHours:12
+            deliveryHours:12,
+            price:4200
         },
+
         {
             id:4,
             name:"Одноразовые стаканы 350мл",
@@ -1107,11 +1769,15 @@ const presets = {
             unit:"шт",
             dailyUse:35,
             supplier:"EcoPack",
-            deliveryHours:48
+            deliveryHours:48,
+            price:55
         }
+
     ],
 
+
     beauty:[
+
         {
             id:1,
             name:"Шампунь очищающий (1л)",
@@ -1120,8 +1786,10 @@ const presets = {
             unit:"шт",
             dailyUse:.3,
             supplier:"L'Oreal Prof",
-            deliveryHours:18
+            deliveryHours:18,
+            price:4500
         },
+
         {
             id:2,
             name:"Краска для волос #6.0",
@@ -1130,8 +1798,10 @@ const presets = {
             unit:"шт",
             dailyUse:1.2,
             supplier:"Estel Pro",
-            deliveryHours:6
+            deliveryHours:6,
+            price:1800
         },
+
         {
             id:3,
             name:"Одноразовые пеньюары",
@@ -1140,8 +1810,10 @@ const presets = {
             unit:"шт",
             dailyUse:15,
             supplier:"BeautyPack",
-            deliveryHours:36
+            deliveryHours:36,
+            price:3200
         },
+
         {
             id:4,
             name:"Масло для кутикулы 50мл",
@@ -1150,11 +1822,15 @@ const presets = {
             unit:"шт",
             dailyUse:.2,
             supplier:"NailArt",
-            deliveryHours:4
+            deliveryHours:4,
+            price:2800
         }
+
     ],
 
+
     market:[
+
         {
             id:1,
             name:"Вода без газа 0.5л",
@@ -1163,8 +1839,10 @@ const presets = {
             unit:"шт",
             dailyUse:15,
             supplier:"Tassay",
-            deliveryHours:5
+            deliveryHours:5,
+            price:180
         },
+
         {
             id:2,
             name:"Пакеты майка 30х50",
@@ -1173,8 +1851,10 @@ const presets = {
             unit:"шт",
             dailyUse:80,
             supplier:"PolyPack",
-            deliveryHours:24
+            deliveryHours:24,
+            price:35
         },
+
         {
             id:3,
             name:"Чековая лента 80мм",
@@ -1183,8 +1863,10 @@ const presets = {
             unit:"рул",
             dailyUse:2,
             supplier:"PaperPrint",
-            deliveryHours:8
+            deliveryHours:8,
+            price:900
         },
+
         {
             id:4,
             name:"Крафт-пакеты фасовочные",
@@ -1193,23 +1875,27 @@ const presets = {
             unit:"шт",
             dailyUse:25,
             supplier:"EcoPaper",
-            deliveryHours:30
+            deliveryHours:30,
+            price:75
         }
+
     ]
 
 };
 
 
-const bizTitles = {
+const bizTitles={
 
     coffee:"Кофейня / Общепит",
+
     beauty:"Салон красоты / SPA",
+
     market:"Ритейл / Магазин"
 
 };
 
 
-const tools = [
+const tools=[
 
     {
         id:1,
@@ -1261,11 +1947,16 @@ const tools = [
 ===================================================== */
 
 let currentInventory=[];
+
 let orders=[];
+
 let profileNotifications=[];
 
 let currentBusiness=null;
+
 let timerInterval=null;
+
+let nextProductId=100;
 
 
 /* =====================================================
@@ -1276,73 +1967,180 @@ function handleLogin(event){
 
     event.preventDefault();
 
+
     const username=
-        document.getElementById("login-username").value.trim();
+        document
+            .getElementById("login-username")
+            .value
+            .trim();
+
 
     const business=
-        document.getElementById("login-biz").value;
+        document
+            .getElementById("login-biz")
+            .value;
+
 
     currentBusiness=business;
 
+
+    const saved=
+        loadBusinessState(business);
+
+
+    if(saved){
+
+        currentInventory=
+            saved.inventory || [];
+
+        orders=
+            saved.orders || [];
+
+        profileNotifications=
+            (saved.notifications || [])
+            .map(item=>({
+
+                ...item,
+
+                time:new Date(item.time)
+
+            }));
+
+    }
+
+    else{
+
+        currentInventory=
+            presets[business]
+            .map(item=>({
+
+                ...item,
+
+                ordered:false,
+
+                orderNumber:null,
+
+                pendingQty:0,
+
+                deliveryEta:null,
+
+                delivered:false
+
+            }));
+
+
+        orders=[];
+
+        profileNotifications=[];
+
+    }
+
+
     currentInventory=
-        presets[business].map(item=>({
+        currentInventory.map(item=>({
 
             ...item,
 
-            ordered:false,
+            price:Number(item.price)||0,
 
-            orderNumber:null,
+            ordered:Boolean(item.ordered),
 
-            pendingQty:0,
+            delivered:Boolean(item.delivered),
 
-            deliveryEta:null,
+            pendingQty:Number(item.pendingQty)||0,
 
-            delivered:false
+            deliveryEta:item.deliveryEta ?? null
 
         }));
 
-    orders=[];
-    profileNotifications=[];
+
+    nextProductId=
+        Math.max(
+            100,
+            ...currentInventory.map(
+                item=>Number(item.id)||0
+            )
+        )+1;
 
 
-    document.getElementById("user-profile-name").innerText=
-        username.split("@")[0] || "Пользователь";
+    document.getElementById(
+        "user-profile-name"
+    ).innerText=
+        username.split("@")[0]
+        ||
+        "Пользователь";
 
-    document.getElementById("user-profile-email").innerText=
+
+    document.getElementById(
+        "user-profile-email"
+    ).innerText=
         username;
 
-    document.getElementById("user-profile-biz").innerText=
+
+    document.getElementById(
+        "user-profile-biz"
+    ).innerText=
         bizTitles[business];
 
-    document.getElementById("active-biz-label").innerText=
+
+    document.getElementById(
+        "active-biz-label"
+    ).innerText=
         bizTitles[business];
 
-    document.getElementById("user-header-status").innerHTML=`
 
-        <span class="badge badge-success" style="padding:8px 14px;">
-            👤 ${escapeHtml(
-                username.split("@")[0] || "Пользователь"
+    document.getElementById(
+        "user-header-status"
+    ).innerHTML=`
+
+        <span
+            class="badge badge-success"
+            style="padding:8px 14px;"
+        >
+            👤
+            ${escapeHtml(
+                username.split("@")[0]
+                ||
+                "Пользователь"
             )}
         </span>
 
     `;
 
 
-    document.getElementById("login-overlay").style.display="none";
-    document.getElementById("main-site-content").style.display="block";
+    document.getElementById(
+        "login-overlay"
+    ).style.display="none";
+
+
+    document.getElementById(
+        "main-site-content"
+    ).style.display="block";
 
 
     renderInventory();
+
     renderOrders();
+
     renderProfileNotifications();
+
     renderCatalog();
+
+    updateDashboardStats();
 
 
     if(timerInterval){
+
         clearInterval(timerInterval);
+
     }
 
-    timerInterval=setInterval(updateTimers,1000);
+
+    timerInterval=
+        setInterval(
+            updateTimers,
+            1000
+        );
 
 
     addProfileNotification(
@@ -1350,6 +2148,9 @@ function handleLogin(event){
         `Вы вошли в StockFlow. Активный бизнес: ${bizTitles[business]}.`,
         "success"
     );
+
+
+    saveBusinessState();
 
 }
 
@@ -1361,19 +2162,36 @@ function handleLogin(event){
 function logout(){
 
     if(timerInterval){
+
         clearInterval(timerInterval);
+
         timerInterval=null;
+
     }
 
+
     currentInventory=[];
+
     orders=[];
+
     profileNotifications=[];
+
     currentBusiness=null;
 
-    document.getElementById("main-site-content").style.display="none";
-    document.getElementById("login-overlay").style.display="flex";
 
-    document.getElementById("login-password").value="";
+    document.getElementById(
+        "main-site-content"
+    ).style.display="none";
+
+
+    document.getElementById(
+        "login-overlay"
+    ).style.display="flex";
+
+
+    document.getElementById(
+        "login-password"
+    ).value="";
 
 }
 
@@ -1384,16 +2202,29 @@ function logout(){
 
 function switchTab(tab){
 
-    ["profile","dashboard","catalog"].forEach(name=>{
+    [
+        "profile",
+        "dashboard",
+        "catalog"
+    ].forEach(name=>{
 
         const section=
-            document.getElementById(`tab-${name}`);
+            document.getElementById(
+                `tab-${name}`
+            );
+
 
         const button=
-            document.getElementById(`tab-${name}-btn`);
+            document.getElementById(
+                `tab-${name}-btn`
+            );
+
 
         section.style.display=
-            name===tab ? "block":"none";
+            name===tab
+            ?"block"
+            :"none";
+
 
         button.classList.toggle(
             "active",
@@ -1412,30 +2243,27 @@ function switchTab(tab){
 function renderInventory(){
 
     const tbody=
-        document.getElementById("inventory-table");
+        document.getElementById(
+            "inventory-table"
+        );
+
 
     if(!tbody)return;
+
 
     tbody.innerHTML="";
 
 
     currentInventory.forEach(item=>{
 
-        /*
-         * СТАТУС:
-         *
-         * 1. Заказан и таймер идёт
-         *    = ОРАНЖЕВЫЙ "Товар в пути"
-         *
-         * 2. Таймер закончился
-         *    = ЗЕЛЁНЫЙ "В наличии"
-         *
-         * 3. Не заказан + мало товара
-         *    = КРАСНЫЙ "Дефицит"
-         */
 
         let status;
 
+
+        /*
+         * ЕСЛИ ТОВАР ЗАКАЗАН
+         * И ТАЙМЕР ЕЩЁ ИДЁТ
+         */
 
         if(
             item.ordered &&
@@ -1444,13 +2272,20 @@ function renderInventory(){
 
             status=`
 
-                <span class="badge badge-warning">
+                <span
+                    class="badge badge-warning"
+                >
                     🟠 Товар в пути
                 </span>
 
             `;
 
         }
+
+
+        /*
+         * ЕСЛИ ТАЙМЕР ЗАКОНЧИЛСЯ
+         */
 
         else if(
             item.ordered &&
@@ -1459,7 +2294,9 @@ function renderInventory(){
 
             status=`
 
-                <span class="badge badge-success">
+                <span
+                    class="badge badge-success"
+                >
                     🟢 В наличии
                 </span>
 
@@ -1467,13 +2304,20 @@ function renderInventory(){
 
         }
 
+
+        /*
+         * ДЕФИЦИТ
+         */
+
         else if(
-            item.stock <= item.minStock
+            item.stock < item.minStock
         ){
 
             status=`
 
-                <span class="badge badge-danger">
+                <span
+                    class="badge badge-danger"
+                >
                     🔴 Дефицит
                 </span>
 
@@ -1481,11 +2325,40 @@ function renderInventory(){
 
         }
 
+
+        /*
+         * СКОРО ЗАКОНЧИТСЯ
+         */
+
+        else if(
+            item.stock <=
+            item.minStock * 1.2
+        ){
+
+            status=`
+
+                <span
+                    class="badge badge-warning"
+                >
+                    🟠 Заканчивается
+                </span>
+
+            `;
+
+        }
+
+
+        /*
+         * В НАЛИЧИИ
+         */
+
         else{
 
             status=`
 
-                <span class="badge badge-success">
+                <span
+                    class="badge badge-success"
+                >
                     🟢 В наличии
                 </span>
 
@@ -1495,17 +2368,19 @@ function renderInventory(){
 
 
         /*
-         * Количество на месяц.
+         * ЗАКАЗ НА МЕСЯЦ
          */
 
         const monthlyNeed=
             Math.ceil(
-                item.dailyUse*30*1.2
+                item.dailyUse *
+                30 *
+                1.2
             );
 
 
         /*
-         * ТАЙМЕР НИКОГДА НЕ УБИРАЕМ.
+         * ТАЙМЕР
          */
 
         let timer;
@@ -1522,12 +2397,20 @@ function renderInventory(){
                     class="timer-tag"
                     id="timer-${item.id}"
                 >
-                    ${formatETA(item.deliveryEta)}
+                    ${formatETA(
+                        item.deliveryEta
+                    )}
                 </span>
 
             `;
 
         }
+
+
+        /*
+         * ТАЙМЕР НЕ ИСЧЕЗАЕТ
+         * ПОСЛЕ ДОСТАВКИ
+         */
 
         else if(
             item.ordered &&
@@ -1537,7 +2420,10 @@ function renderInventory(){
             timer=`
 
                 <span
-                    class="timer-tag timer-finished"
+                    class="
+                        timer-tag
+                        timer-finished
+                    "
                     id="timer-${item.id}"
                 >
                     00д 00ч 00м 00с
@@ -1546,6 +2432,7 @@ function renderInventory(){
             `;
 
         }
+
 
         else{
 
@@ -1564,7 +2451,7 @@ function renderInventory(){
 
 
         /*
-         * КНОПКА.
+         * КНОПКА
          */
 
         let action;
@@ -1601,7 +2488,9 @@ function renderInventory(){
                         font-size:11px;
                     "
                 >
-                    Заказать
+                    📦 Заказать
+                    (${monthlyNeed}
+                    ${escapeHtml(item.unit)})
                 </button>
 
             `;
@@ -1619,6 +2508,7 @@ function renderInventory(){
                 ${status}
             </td>
 
+
             <td>
 
                 <strong>
@@ -1627,13 +2517,20 @@ function renderInventory(){
 
                 <br>
 
-                <small style="color:var(--muted);">
-                    ${escapeHtml(item.supplier)}
+                <small
+                    style="
+                        color:var(--muted);
+                    "
+                >
+                    ${escapeHtml(
+                        item.supplier
+                    )}
                 </small>
 
                 ${
                     item.ordered
-                    ? `
+                    ?
+                    `
                         <div
                             style="
                                 margin-top:4px;
@@ -1642,38 +2539,105 @@ function renderInventory(){
                                 font-weight:700;
                             "
                         >
-                            Заказ №${item.orderNumber}
+                            Заказ №
+                            ${item.orderNumber}
                         </div>
                     `
-                    :""
+                    :
+                    ""
                 }
 
             </td>
 
+
             <td>
+
                 <strong>
-                    ${formatNumber(item.stock)}
+                    ${formatNumber(
+                        item.stock
+                    )}
                 </strong>
-                ${escapeHtml(item.unit)}
+
+                ${escapeHtml(
+                    item.unit
+                )}
+
+                <div
+                    style="
+                        color:var(--muted);
+                        font-size:10px;
+                        margin-top:2px;
+                    "
+                >
+                    мин.
+                    ${formatNumber(
+                        item.minStock
+                    )}
+                    ${escapeHtml(
+                        item.unit
+                    )}
+                </div>
+
             </td>
 
+
             <td>
-                ${formatNumber(item.dailyUse)}
-                ${escapeHtml(item.unit)}
+
+                <strong>
+                    ${formatMoney(
+                        item.price
+                    )}
+                </strong>
+
+                <div
+                    style="
+                        color:var(--muted);
+                        font-size:10px;
+                        margin-top:2px;
+                    "
+                >
+                    за
+                    ${escapeHtml(
+                        item.unit
+                    )}
+                </div>
+
             </td>
 
+
             <td>
 
-                <strong style="color:var(--primary);">
+                ${formatNumber(
+                    item.dailyUse
+                )}
+
+                ${escapeHtml(
+                    item.unit
+                )}
+
+            </td>
+
+
+            <td>
+
+                <strong
+                    style="
+                        color:var(--primary);
+                    "
+                >
                     ${monthlyNeed}
-                    ${escapeHtml(item.unit)}
+                    ${escapeHtml(
+                        item.unit
+                    )}
                 </strong>
 
             </td>
+
 
             <td>
                 ${timer}
             </td>
+
 
             <td>
                 ${action}
@@ -1686,6 +2650,8 @@ function renderInventory(){
 
     });
 
+
+    updateDashboardStats();
 
     refreshIcons();
 
@@ -1700,71 +2666,106 @@ function orderItem(itemId){
 
     const item=
         currentInventory.find(
-            product=>product.id===itemId
+            product=>
+                product.id===itemId
         );
 
-    if(!item || item.ordered){
+
+    if(
+        !item ||
+        item.ordered
+    ){
         return;
     }
 
 
+    /*
+     * КОЛИЧЕСТВО ЗАКАЗА
+     */
+
     const monthlyNeed=
         Math.ceil(
-            item.dailyUse*30*1.2
+            item.dailyUse *
+            30 *
+            1.2
         );
 
 
     /*
-     * ВАЖНО:
-     *
-     * Остаток НЕ увеличиваем при заказе.
-     *
-     * Товар физически появится на складе
-     * только после окончания таймера.
+     * ЗАПУСК ТАЙМЕРА
      */
 
     item.deliveryEta=
-        Date.now()+
-        item.deliveryHours*
-        60*
-        60*
+        Date.now() +
+        item.deliveryHours *
+        60 *
+        60 *
         1000;
+
 
     item.pendingQty=
         monthlyNeed;
 
+
     item.ordered=true;
+
     item.delivered=false;
 
 
+    /*
+     * НОМЕР ЗАКАЗА
+     */
+
     item.orderNumber=
         Math.floor(
-            1000+
+            1000 +
             Math.random()*9000
         );
 
 
+    /*
+     * СОЗДАЁМ ЗАКАЗ
+     */
+
     orders.unshift({
 
         number:item.orderNumber,
+
         product:item.name,
+
         quantity:monthlyNeed,
+
         unit:item.unit,
+
         supplier:item.supplier,
+
         deliveryHours:item.deliveryHours,
+
         eta:item.deliveryEta
 
     });
 
 
     renderInventory();
+
     renderOrders();
 
 
+    /*
+     * УВЕДОМЛЕНИЕ
+     */
+
     addProfileNotification(
         "Новый заказ оформлен",
-        `Заказ №${item.orderNumber}: ${item.name}. Товар в пути. Срок доставки: ${formatDuration(item.deliveryHours*60*60*1000)}.`,
-        "success"
+
+        `Заказ №${item.orderNumber}: ${item.name}. Товар в пути. Срок доставки: ${formatDuration(
+            item.deliveryHours *
+            60 *
+            60 *
+            1000
+        )}.`,
+
+        "warning"
     );
 
 
@@ -1772,6 +2773,9 @@ function orderItem(itemId){
         `Заказ №${item.orderNumber}`,
         `${item.name} отправлен в доставку.`
     );
+
+
+    saveBusinessState();
 
 }
 
@@ -1787,17 +2791,14 @@ function updateTimers(){
 
     currentInventory.forEach(item=>{
 
-        /*
-         * Пока товар в пути.
-         */
-
         if(
             item.ordered &&
             item.deliveryEta !== null
         ){
 
             const remaining=
-                item.deliveryEta-Date.now();
+                item.deliveryEta -
+                Date.now();
 
 
             const timer=
@@ -1806,11 +2807,11 @@ function updateTimers(){
                 );
 
 
-            if(remaining>0){
+            /*
+             * ТАЙМЕР ЕЩЁ ИДЁТ
+             */
 
-                /*
-                 * Просто обновляем таймер.
-                 */
+            if(remaining>0){
 
                 if(timer){
 
@@ -1823,54 +2824,56 @@ function updateTimers(){
 
             }
 
+
+            /*
+             * ТАЙМЕР ЗАКОНЧИЛСЯ
+             */
+
             else{
 
                 /*
-                 * ТАЙМЕР ЗАКОНЧИЛСЯ.
-                 *
-                 * Теперь товар приходит
-                 * на склад.
+                 * ДОБАВЛЯЕМ ПОСТАВКУ
                  */
 
                 item.stock=
                     Math.round(
                         (
-                            item.stock+
+                            item.stock +
                             item.pendingQty
                         )*10
                     )/10;
 
 
+                /*
+                 * ВАЖНО:
+                 * deliveryEta убираем,
+                 * но ordered оставляем true,
+                 * а delivered=true.
+                 *
+                 * Поэтому таймер после доставки
+                 * не исчезает.
+                 */
+
                 item.deliveryEta=null;
+
                 item.pendingQty=0;
+
                 item.delivered=true;
 
                 inventoryChanged=true;
 
 
                 /*
-                 * Таймер НЕ исчезает.
-                 */
-
-                if(timer){
-
-                    timer.innerText=
-                        "00д 00ч 00м 00с";
-
-                    timer.classList.add(
-                        "timer-finished"
-                    );
-
-                }
-
-
-                /*
-                 * Уведомление.
+                 * УВЕДОМЛЕНИЕ
                  */
 
                 addProfileNotification(
                     "Поставка прибыла",
-                    `${item.name} поступил на склад. Получено: ${item.stock} ${item.unit}.`,
+
+                    `${item.name} поступил на склад. Получено: ${formatNumber(
+                        item.stock
+                    )} ${item.unit}.`,
+
                     "success"
                 );
 
@@ -1890,7 +2893,10 @@ function updateTimers(){
     if(inventoryChanged){
 
         renderInventory();
+
         renderOrders();
+
+        saveBusinessState();
 
     }
 
@@ -1906,7 +2912,8 @@ function formatETA(timestamp){
     return formatDuration(
         Math.max(
             0,
-            timestamp-Date.now()
+            timestamp -
+            Date.now()
         )
     );
 
@@ -1926,6 +2933,7 @@ function formatDuration(milliseconds){
             totalSeconds/86400
         );
 
+
     totalSeconds%=86400;
 
 
@@ -1933,6 +2941,7 @@ function formatDuration(milliseconds){
         Math.floor(
             totalSeconds/3600
         );
+
 
     totalSeconds%=3600;
 
@@ -1942,16 +2951,23 @@ function formatDuration(milliseconds){
             totalSeconds/60
         );
 
+
     const seconds=
         totalSeconds%60;
 
 
     const pad=
         value=>
-            String(value).padStart(2,"0");
+            String(value)
+            .padStart(2,"0");
 
 
-    return `${days}д ${pad(hours)}ч ${pad(minutes)}м ${pad(seconds)}с`;
+    return `
+        ${days}д
+        ${pad(hours)}ч
+        ${pad(minutes)}м
+        ${pad(seconds)}с
+    `.replace(/\s+/g," ").trim();
 
 }
 
@@ -1962,20 +2978,25 @@ function formatDuration(milliseconds){
 
 function simulateDay(){
 
-    currentInventory.forEach(item=>{
+    if(!currentInventory.length){
+        return;
+    }
 
-        /*
-         * Если товар уже в пути,
-         * он тоже может расходоваться
-         * только если был на складе.
-         */
+
+    /*
+     * СПИСЫВАЕМ РАСХОД
+     * ЗА СМЕНУ
+     */
+
+    currentInventory.forEach(item=>{
 
         item.stock=
             Math.max(
                 0,
+
                 Math.round(
                     (
-                        item.stock-
+                        item.stock -
                         item.dailyUse
                     )*10
                 )/10
@@ -1984,20 +3005,68 @@ function simulateDay(){
     });
 
 
+    /*
+     * ПРОВЕРЯЕМ ДЕФИЦИТ
+     */
+
+    const deficit=
+        currentInventory.filter(
+            item=>
+                item.stock <
+                item.minStock &&
+                !item.ordered
+        );
+
+
     renderInventory();
 
 
+    /*
+     * УВЕДОМЛЕНИЕ
+     */
+
     addProfileNotification(
         "Смена списана",
+
         "Расходные материалы были списаны со склада за текущую смену.",
+
         "success"
     );
 
 
+    /*
+     * УВЕДОМЛЕНИЕ О ДЕФИЦИТЕ
+     */
+
+    if(deficit.length){
+
+        addProfileNotification(
+            "Обнаружен дефицит",
+
+            `После списания смены ниже минимума: ${deficit.length} ${
+                deficit.length===1
+                ?"позиция"
+                :"позиции"
+            }.`,
+
+            "warning"
+        );
+
+    }
+
+
     showNotification(
         "Смена закрыта",
+
+        deficit.length
+        ?
+        `Расход списан. Дефицит: ${deficit.length} поз.`
+        :
         "Расходные материалы списаны со склада."
     );
+
+
+    saveBusinessState();
 
 }
 
@@ -2009,7 +3078,9 @@ function simulateDay(){
 function renderOrders(){
 
     const container=
-        document.getElementById("orders-list");
+        document.getElementById(
+            "orders-list"
+        );
 
 
     if(!container)return;
@@ -2026,7 +3097,8 @@ function renderOrders(){
 
 
     container.innerHTML=
-        orders.map(order=>{
+        orders
+        .map(order=>{
 
             const item=
                 currentInventory.find(
@@ -2039,31 +3111,66 @@ function renderOrders(){
             let deliveryText;
 
 
+            /*
+             * ТОВАР ЕЩЁ В ПУТИ
+             */
+
             if(
                 item &&
-                item.deliveryEta !== null
+                item.deliveryEta!==null
             ){
 
-                deliveryText=
-                    `
-                    <span style="color:#fbbf24;">
+                deliveryText=`
+
+                    <span
+                        style="
+                            color:#fbbf24;
+                        "
+                    >
                         🟠 В пути —
-                        ${formatETA(item.deliveryEta)}
+                        ${formatETA(
+                            item.deliveryEta
+                        )}
                     </span>
-                    `;
+
+                `;
 
             }
+
+
+            /*
+             * ТОВАР УЖЕ ПРИШЁЛ
+             */
 
             else{
 
-                deliveryText=
-                    `
-                    <span style="color:#34d399;">
-                        🟢 В наличии
+                deliveryText=`
+
+                    <span
+                        style="
+                            color:#34d399;
+                        "
+                    >
+                        🟢 В наличии —
+                        00д 00ч 00м 00с
                     </span>
-                    `;
+
+                `;
 
             }
+
+
+            const price=
+                item
+                ?
+                item.price
+                :
+                0;
+
+
+            const total=
+                price *
+                order.quantity;
 
 
             return `
@@ -2093,10 +3200,19 @@ function renderOrders(){
                             margin-top:6px;
                         "
                     >
-                        ${escapeHtml(order.product)}
+
+                        ${escapeHtml(
+                            order.product
+                        )}
+
                         —
+
                         ${order.quantity}
-                        ${escapeHtml(order.unit)}
+
+                        ${escapeHtml(
+                            order.unit
+                        )}
+
                     </div>
 
 
@@ -2107,15 +3223,34 @@ function renderOrders(){
                             color:var(--muted);
                         "
                     >
+
                         Поставщик:
-                        ${escapeHtml(order.supplier)}
+                        ${escapeHtml(
+                            order.supplier
+                        )}
+
+                        ·
+
+                        Цена:
+                        ${formatMoney(
+                            price
+                        )}
+
+                        ·
+
+                        Сумма:
+                        ${formatMoney(
+                            total
+                        )}
+
                     </small>
 
                 </div>
 
             `;
 
-        }).join("");
+        })
+        .join("");
 
 }
 
@@ -2132,13 +3267,18 @@ function renderCatalog(){
         );
 
 
+    if(!container)return;
+
+
     container.innerHTML="";
 
 
     tools.forEach(tool=>{
 
         const card=
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         card.className=
@@ -2149,45 +3289,112 @@ function renderCatalog(){
 
             <div>
 
-                <h4
+                <div
                     style="
-                        margin-bottom:7px;
-                        font-size:16px;
+                        display:flex;
+                        align-items:center;
+                        justify-content:space-between;
+                        gap:10px;
                     "
                 >
-                    ${escapeHtml(tool.name)}
-                </h4>
+
+                    <h4
+                        style="
+                            font-size:16px;
+                        "
+                    >
+                        ${escapeHtml(
+                            tool.name
+                        )}
+                    </h4>
+
+
+                    <span
+                        class="
+                            badge
+                            ${
+                                tool.active
+                                ?
+                                "badge-success"
+                                :
+                                "badge-warning"
+                            }
+                        "
+                    >
+
+                        ${
+                            tool.active
+                            ?
+                            "● Активен"
+                            :
+                            "○ Выкл."
+                        }
+
+                    </span>
+
+                </div>
+
 
                 <p
                     style="
+                        margin-top:8px;
                         color:var(--muted);
                         font-size:12px;
                         line-height:1.5;
                     "
                 >
-                    ${escapeHtml(tool.desc)}
+
+                    ${escapeHtml(
+                        tool.desc
+                    )}
+
                 </p>
 
             </div>
 
 
-            <button
-                class="btn ${
-                    tool.active
-                    ?"btn-outline"
-                    :"btn-primary"
-                }"
-                onclick="toggleTool(${tool.id})"
-                style="width:100%;"
+            <div
+                style="
+                    display:flex;
+                    gap:8px;
+                "
             >
 
-                ${
-                    tool.active
-                    ?"✓ Подключено"
-                    :"Активировать"
-                }
+                <button
+                    class="btn btn-primary"
+                    style="flex:1;"
+                    onclick="runTool(${tool.id})"
+                >
 
-            </button>
+                    <i
+                        data-lucide="play"
+                        style="width:14px;"
+                    ></i>
+
+                    Запустить
+
+                </button>
+
+
+                <button
+                    class="btn btn-outline"
+                    onclick="toggleTool(${tool.id})"
+                    title="
+                        Включить или выключить модуль
+                    "
+                >
+
+                    ${
+                        tool.active
+                        ?
+                        "Выкл."
+                        :
+                        "Вкл."
+                    }
+
+                </button>
+
+            </div>
 
         `;
 
@@ -2203,7 +3410,7 @@ function renderCatalog(){
 
 
 /* =====================================================
-   ПЕРЕКЛЮЧЕНИЕ ИНСТРУМЕНТА
+   ВКЛЮЧЕНИЕ / ВЫКЛЮЧЕНИЕ ИНСТРУМЕНТА
 ===================================================== */
 
 function toggleTool(id){
@@ -2224,37 +3431,717 @@ function toggleTool(id){
     renderCatalog();
 
 
-    if(tool.active){
+    addProfileNotification(
 
-        addProfileNotification(
-            "Модуль подключен",
-            `${tool.name} успешно подключен к вашему кабинету.`,
-            "success"
+        tool.active
+        ?
+        "Модуль включен"
+        :
+        "Модуль отключен",
+
+        `${tool.name} ${
+            tool.active
+            ?"включен"
+            :"отключен"
+        }.`,
+
+        tool.active
+        ?
+        "success"
+        :
+        "warning"
+
+    );
+
+
+    showNotification(
+
+        tool.active
+        ?
+        "Модуль включен"
+        :
+        "Модуль отключен",
+
+        tool.name
+
+    );
+
+
+    saveBusinessState();
+
+}
+
+
+/* =====================================================
+   ЗАПУСК ИНСТРУМЕНТА
+===================================================== */
+
+function runTool(id){
+
+    const tool=
+        tools.find(
+            item=>item.id===id
         );
 
 
-        showNotification(
-            "Модуль подключен",
-            tool.name
-        );
+    if(!tool)return;
 
-    }
 
-    else{
+    /*
+     * ЕСЛИ МОДУЛЬ ВЫКЛЮЧЕН
+     */
+
+    if(!tool.active){
 
         addProfileNotification(
-            "Модуль отключен",
-            `${tool.name} отключен в настройках каталога.`,
+            "Модуль выключен",
+
+            `${tool.name}: сначала включите инструмент.`,
+
             "warning"
         );
 
 
         showNotification(
-            "Модуль отключен",
-            tool.name
+            "Модуль выключен",
+            "Включите инструмент в каталоге."
+        );
+
+
+        return;
+
+    }
+
+
+    /*
+     * 1.
+     * АВТОЗАКУПКА
+     */
+
+    if(id===1){
+
+        const candidates=
+            currentInventory.filter(
+                item=>
+                    item.stock <
+                    item.minStock &&
+                    !item.ordered
+            );
+
+
+        candidates.forEach(item=>{
+
+            orderItem(item.id);
+
+        });
+
+
+        addProfileNotification(
+
+            "Автозакупка выполнена",
+
+            candidates.length
+            ?
+            `Оформлено заказов: ${candidates.length}.`
+            :
+            "Дефицитных позиций для заказа сейчас нет.",
+
+            candidates.length
+            ?
+            "warning"
+            :
+            "success"
+
+        );
+
+
+        return;
+
+    }
+
+
+    /*
+     * 2.
+     * AI ПРОГНОЗ
+     */
+
+    if(id===2){
+
+        const lines=
+            currentInventory.map(
+                item=>
+                    `${item.name}: ~${Math.ceil(
+                        item.dailyUse*30
+                    )} ${item.unit}/30 дней`
+            );
+
+
+        alert(
+            "AI-прогноз расхода на 30 дней:\n\n"+
+            lines.join("\n")
+        );
+
+
+        addProfileNotification(
+            "AI Прогноз спроса",
+            "Прогноз расхода на 30 дней рассчитан.",
+            "success"
+        );
+
+
+        return;
+
+    }
+
+
+    /*
+     * 3.
+     * ЛОГИСТИКА
+     */
+
+    if(id===3){
+
+        const active=
+            currentInventory.filter(
+                item=>item.ordered
+            );
+
+
+        const text=
+            active.length
+            ?
+            active
+                .map(
+                    item=>
+                        `${item.name} — ${item.deliveryHours} ч.`
+                )
+                .join("\n")
+            :
+            "Активных поставок нет.";
+
+
+        alert(
+            "Текущая логистика:\n\n"+
+            text
+        );
+
+
+        addProfileNotification(
+            "Калькулятор логистики",
+
+            `Активных поставок: ${active.length}.`,
+
+            "success"
+        );
+
+
+        return;
+
+    }
+
+
+    /*
+     * 4.
+     * ИЗЛИШКИ
+     */
+
+    if(id===4){
+
+        const surplus=
+            currentInventory.filter(
+                item=>
+                    item.stock >
+                    item.minStock*3
+            );
+
+
+        const text=
+            surplus.length
+            ?
+            surplus
+                .map(
+                    item=>
+                        `${item.name}: ${formatNumber(
+                            item.stock
+                        )} ${item.unit}`
+                )
+                .join("\n")
+            :
+            "Крупных излишков не обнаружено.";
+
+
+        alert(
+            "Проверка излишков:\n\n"+
+            text
+        );
+
+
+        addProfileNotification(
+
+            "Детектор излишков",
+
+            `Найдено позиций с излишком: ${surplus.length}.`,
+
+            surplus.length
+            ?
+            "warning"
+            :
+            "success"
+
+        );
+
+
+        return;
+
+    }
+
+
+    /*
+     * 5.
+     * ИНВЕНТАРИЗАЦИЯ
+     */
+
+    if(id===5){
+
+        const text=
+            currentInventory
+            .map(
+                item=>
+                    `${item.name}: ${formatNumber(
+                        item.stock
+                    )} ${item.unit}`
+            )
+            .join("\n");
+
+
+        alert(
+            "Инвентаризация склада:\n\n"+
+            text
+        );
+
+
+        addProfileNotification(
+            "Инвентаризация",
+            "Проверка остатков выполнена.",
+            "success"
+        );
+
+
+        return;
+
+    }
+
+
+    /*
+     * 6.
+     * FIFO / LIFO
+     */
+
+    if(id===6){
+
+        alert(
+            "FIFO активен.\n\n"+
+            "При списании приоритет отдаётся более ранним партиям товара."
+        );
+
+
+        addProfileNotification(
+            "FIFO / LIFO",
+            "Открыт режим FIFO для списания товара.",
+            "success"
         );
 
     }
+
+}
+
+
+/* =====================================================
+   СОХРАНЕНИЕ
+===================================================== */
+
+function saveBusinessState(){
+
+    if(!currentBusiness)return;
+
+
+    localStorage.setItem(
+
+        `stockflow_${currentBusiness}`,
+
+        JSON.stringify({
+
+            inventory:currentInventory,
+
+            orders:orders,
+
+            notifications:profileNotifications
+
+        })
+
+    );
+
+}
+
+
+/* =====================================================
+   ЗАГРУЗКА
+===================================================== */
+
+function loadBusinessState(business){
+
+    try{
+
+        const raw=
+            localStorage.getItem(
+                `stockflow_${business}`
+            );
+
+
+        return raw
+            ?
+            JSON.parse(raw)
+            :
+            null;
+
+    }
+
+    catch(error){
+
+        return null;
+
+    }
+
+}
+
+
+/* =====================================================
+   ДЕНЬГИ
+===================================================== */
+
+function formatMoney(value){
+
+    return `${Math.round(
+        Number(value)||0
+    ).toLocaleString(
+        "ru-RU"
+    )} ₸`;
+
+}
+
+
+/* =====================================================
+   СТАТИСТИКА
+===================================================== */
+
+function updateDashboardStats(){
+
+    /*
+     * ВСЕ ПОЗИЦИИ
+     */
+
+    const total=
+        currentInventory.length;
+
+
+    /*
+     * ДЕФИЦИТ
+     */
+
+    const deficit=
+        currentInventory.filter(
+            item=>
+                item.stock <
+                item.minStock
+        ).length;
+
+
+    /*
+     * СТОИМОСТЬ СКЛАДА
+     *
+     * Остаток × цена
+     */
+
+    const value=
+        currentInventory.reduce(
+
+            (sum,item)=>
+
+                sum +
+                (
+                    Number(item.stock)||0
+                ) *
+                (
+                    Number(item.price)||0
+                ),
+
+            0
+
+        );
+
+
+    const totalEl=
+        document.getElementById(
+            "total-positions"
+        );
+
+
+    const deficitEl=
+        document.getElementById(
+            "deficit-count"
+        );
+
+
+    const valueEl=
+        document.getElementById(
+            "warehouse-value"
+        );
+
+
+    if(totalEl){
+
+        totalEl.innerText=
+            total;
+
+    }
+
+
+    if(deficitEl){
+
+        deficitEl.innerText=
+            deficit;
+
+    }
+
+
+    if(valueEl){
+
+        valueEl.innerText=
+            formatMoney(value);
+
+    }
+
+}
+
+
+/* =====================================================
+   ДОБАВЛЕНИЕ ТОВАРА
+===================================================== */
+
+function addProduct(){
+
+    const name=
+        document
+            .getElementById(
+                "new-product-name"
+            )
+            .value
+            .trim();
+
+
+    const stock=
+        Number(
+            document.getElementById(
+                "new-product-stock"
+            ).value
+        );
+
+
+    const minStock=
+        Number(
+            document.getElementById(
+                "new-product-min"
+            ).value
+        );
+
+
+    const price=
+        Number(
+            document.getElementById(
+                "new-product-price"
+            ).value
+        );
+
+
+    const dailyUse=
+        Number(
+            document.getElementById(
+                "new-product-daily"
+            ).value
+        );
+
+
+    const unit=
+        document
+            .getElementById(
+                "new-product-unit"
+            )
+            .value
+            .trim();
+
+
+    const supplier=
+        document
+            .getElementById(
+                "new-product-supplier"
+            )
+            .value
+            .trim();
+
+
+    const deliveryHours=
+        Number(
+            document.getElementById(
+                "new-product-delivery"
+            ).value
+        );
+
+
+    /*
+     * ПРОВЕРКА
+     */
+
+    if(
+
+        !name ||
+
+        !unit ||
+
+        !supplier ||
+
+        !Number.isFinite(stock) ||
+        stock<0 ||
+
+        !Number.isFinite(minStock) ||
+        minStock<0 ||
+
+        !Number.isFinite(price) ||
+        price<=0 ||
+
+        !Number.isFinite(dailyUse) ||
+        dailyUse<0 ||
+
+        !Number.isFinite(deliveryHours) ||
+        deliveryHours<=0
+
+    ){
+
+        showNotification(
+            "Ошибка",
+            "Заполните все поля товара корректно."
+        );
+
+
+        return;
+
+    }
+
+
+    /*
+     * СОЗДАЁМ ТОВАР
+     */
+
+    const product={
+
+        id:nextProductId++,
+
+        name,
+
+        stock,
+
+        minStock,
+
+        unit,
+
+        dailyUse,
+
+        supplier,
+
+        deliveryHours,
+
+        price,
+
+        ordered:false,
+
+        orderNumber:null,
+
+        pendingQty:0,
+
+        deliveryEta:null,
+
+        delivered:false
+
+    };
+
+
+    currentInventory.push(
+        product
+    );
+
+
+    /*
+     * ОЧИЩАЕМ ФОРМУ
+     */
+
+    [
+
+        "new-product-name",
+
+        "new-product-stock",
+
+        "new-product-min",
+
+        "new-product-price",
+
+        "new-product-daily",
+
+        "new-product-unit",
+
+        "new-product-supplier",
+
+        "new-product-delivery"
+
+    ].forEach(
+        id=>
+            document.getElementById(
+                id
+            ).value=""
+    );
+
+
+    /*
+     * ПЕРЕРИСОВЫВАЕМ
+     */
+
+    renderInventory();
+
+
+    /*
+     * УВЕДОМЛЕНИЕ
+     */
+
+    addProfileNotification(
+
+        "Новый товар добавлен",
+
+        `${name} добавлен в склад: ${formatNumber(
+            stock
+        )} ${unit}, цена ${formatMoney(
+            price
+        )}.`,
+
+        "success"
+
+    );
+
+
+    showNotification(
+        "Товар добавлен",
+        name
+    );
+
+
+    saveBusinessState();
 
 }
 
@@ -2264,23 +4151,35 @@ function toggleTool(id){
 ===================================================== */
 
 function addProfileNotification(
+
     title,
+
     message,
+
     type="info"
+
 ){
 
     profileNotifications.unshift({
 
-        id:Date.now()+Math.random(),
+        id:
+            Date.now() +
+            Math.random(),
 
         title,
+
         message,
+
         type,
 
         time:new Date()
 
     });
 
+
+    /*
+     * ОСТАВЛЯЕМ ПОСЛЕДНИЕ 10
+     */
 
     profileNotifications=
         profileNotifications.slice(
@@ -2291,8 +4190,14 @@ function addProfileNotification(
 
     renderProfileNotifications();
 
+    saveBusinessState();
+
 }
 
+
+/* =====================================================
+   РЕНДЕР УВЕДОМЛЕНИЙ
+===================================================== */
 
 function renderProfileNotifications(){
 
@@ -2305,7 +4210,9 @@ function renderProfileNotifications(){
     if(!container)return;
 
 
-    if(!profileNotifications.length){
+    if(
+        !profileNotifications.length
+    ){
 
         container.innerHTML=`
 
@@ -2323,29 +4230,41 @@ function renderProfileNotifications(){
 
         `;
 
+
         return;
 
     }
 
 
     container.innerHTML=
-        profileNotifications.map(notification=>{
+
+        profileNotifications
+        .map(notification=>{
 
             let icon="bell";
+
             let color="var(--cyan)";
 
 
-            if(notification.type==="success"){
+            if(
+                notification.type===
+                "success"
+            ){
 
                 icon="check-circle";
+
                 color="var(--success)";
 
             }
 
 
-            if(notification.type==="warning"){
+            if(
+                notification.type===
+                "warning"
+            ){
 
                 icon="alert-triangle";
+
                 color="var(--warning)";
 
             }
@@ -2353,9 +4272,17 @@ function renderProfileNotifications(){
 
             return `
 
-                <div class="profile-notification">
+                <div
+                    class="
+                        profile-notification
+                    "
+                >
 
-                    <div class="notification-title">
+                    <div
+                        class="
+                            notification-title
+                        "
+                    >
 
                         <i
                             data-lucide="${icon}"
@@ -2365,6 +4292,7 @@ function renderProfileNotifications(){
                             "
                         ></i>
 
+
                         ${escapeHtml(
                             notification.title
                         )}
@@ -2372,7 +4300,11 @@ function renderProfileNotifications(){
                     </div>
 
 
-                    <div class="notification-message">
+                    <div
+                        class="
+                            notification-message
+                        "
+                    >
 
                         ${escapeHtml(
                             notification.message
@@ -2381,15 +4313,20 @@ function renderProfileNotifications(){
                     </div>
 
 
-                    <div class="notification-time">
+                    <div
+                        class="
+                            notification-time
+                        "
+                    >
 
-                        ${notification.time.toLocaleTimeString(
-                            "ru-RU",
-                            {
-                                hour:"2-digit",
-                                minute:"2-digit"
-                            }
-                        )}
+                        ${notification.time
+                            .toLocaleTimeString(
+                                "ru-RU",
+                                {
+                                    hour:"2-digit",
+                                    minute:"2-digit"
+                                }
+                            )}
 
                     </div>
 
@@ -2397,7 +4334,8 @@ function renderProfileNotifications(){
 
             `;
 
-        }).join("");
+        })
+        .join("");
 
 
     refreshIcons();
@@ -2409,7 +4347,10 @@ function renderProfileNotifications(){
    TOAST
 ===================================================== */
 
-function showNotification(title,message){
+function showNotification(
+    title,
+    message
+){
 
     const container=
         document.getElementById(
@@ -2418,7 +4359,9 @@ function showNotification(title,message){
 
 
     const toast=
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     toast.className=
@@ -2434,8 +4377,10 @@ function showNotification(title,message){
                 margin-bottom:4px;
             "
         >
-            ✓ ${escapeHtml(title)}
+            ✓
+            ${escapeHtml(title)}
         </div>
+
 
         <div
             style="
@@ -2450,18 +4395,25 @@ function showNotification(title,message){
     `;
 
 
-    container.appendChild(toast);
+    container.appendChild(
+        toast
+    );
 
 
     setTimeout(()=>{
 
         toast.style.opacity="0";
-        toast.style.transform="translateY(8px)";
+
+        toast.style.transform=
+            "translateY(8px)";
+
         toast.style.transition=".25s";
 
 
         setTimeout(()=>{
+
             toast.remove();
+
         },250);
 
     },4000);
@@ -2476,8 +4428,14 @@ function showNotification(title,message){
 function formatNumber(value){
 
     return Number.isInteger(value)
-        ?String(value)
-        :Number(value)
+
+        ?
+
+        String(value)
+
+        :
+
+        Number(value)
             .toFixed(1)
             .replace(".",",");
 
@@ -2488,11 +4446,30 @@ function escapeHtml(value){
 
     return String(value)
 
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
 
 }
 
@@ -2500,8 +4477,12 @@ function escapeHtml(value){
 function refreshIcons(){
 
     if(
+
         window.lucide &&
-        typeof lucide.createIcons==="function"
+
+        typeof lucide.createIcons===
+        "function"
+
     ){
 
         lucide.createIcons();
