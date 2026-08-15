@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StockFlow — Система учета</title>
     
-
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -50,7 +49,6 @@
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
         }
 
-        
         .login-screen-overlay {
             position: fixed;
             top: 0; left: 0;
@@ -72,7 +70,6 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.6);
         }
 
-        
         header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
         .logo-area { display: flex; align-items: center; gap: 12px; }
         .logo-icon {
@@ -84,7 +81,6 @@
         .logo-text h1 { font-size: 22px; font-weight: 800; background: linear-gradient(to right, #fff, var(--text-muted)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .logo-text p { font-size: 11px; color: var(--accent-cyan); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-       
         .nav-tabs { display: flex; gap: 6px; background: rgba(15, 23, 42, 0.7); padding: 5px; border-radius: 16px; border: 1px solid var(--border); }
         .tab-btn {
             padding: 8px 16px; border-radius: 12px; border: none; background: transparent;
@@ -101,6 +97,7 @@
         .btn-accent { background: linear-gradient(135deg, var(--accent-pink), #db2777); color: white; }
         .btn-outline { background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text-main); }
         .btn-outline:hover { background: rgba(255,255,255,0.1); }
+        .btn-disabled { opacity: 0.5; cursor: not-allowed; }
 
         select, input {
             background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border);
@@ -115,6 +112,9 @@
         .badge { padding: 5px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
         .badge-danger { background: rgba(244, 63, 94, 0.15); color: var(--danger); border: 1px solid rgba(244, 63, 94, 0.3); }
         .badge-success { background: rgba(16, 185, 129, 0.15); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .badge-warning { background: rgba(245, 158, 11, 0.15); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.3); }
+
+        .timer-tag { font-family: monospace; font-size: 12px; font-weight: 700; color: var(--accent-cyan); background: rgba(6, 182, 212, 0.1); padding: 4px 8px; border-radius: 8px; border: 1px solid rgba(6, 182, 212, 0.2); }
 
         .catalog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 16px; }
         .tool-card { padding: 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; }
@@ -122,7 +122,7 @@
 </head>
 <body>
 
-<!-- 1. МАЛЕНЬКОЕ ОКОШКО ВХОДА (ПОЦЕНТРУ, БЛОКИРУЕТ САЙТ ДО ВХОДА) -->
+<!-- 1. ОКНО ВХОДА -->
 <div class="login-screen-overlay" id="login-overlay">
     <div class="glass login-box">
         <div style="text-align: center; margin-bottom: 20px;">
@@ -162,7 +162,6 @@
     </div>
 </div>
 
-
 <!-- 2. ОСНОВНОЙ ВЕБ-САЙТ -->
 <div class="container" id="main-site-content" style="display: none;">
 
@@ -184,10 +183,8 @@
         <div id="user-header-status"></div>
     </header>
 
-
     <div id="tab-profile">
         <div style="display:grid; grid-template-columns: 1fr 2fr; gap:20px;">
-            
             <div class="glass" style="padding:24px;">
                 <div style="text-align:center; margin-bottom:20px;">
                     <div style="width:70px; height:70px; border-radius:50%; background:linear-gradient(135deg, var(--primary), var(--accent-pink)); margin:0 auto 12px; display:flex; align-items:center; justify-content:center; box-shadow: 0 0 20px var(--primary-glow);">
@@ -214,7 +211,7 @@
                         <i data-lucide="sparkles"></i> Уведомления личного кабинета
                     </h3>
                     <p style="font-size:13px; color:var(--text-muted);">
-                        Вы успешно вошли в систему StockFlow. Поставки и лимиты автоматически настроены под выбранный тип заведения.
+                        Вы успешно вошли в систему StockFlow. Поставки и время логистики автоматически адаптированы под ваш тип заведения.
                     </p>
                 </div>
 
@@ -225,7 +222,6 @@
             </div>
         </div>
     </div>
-
 
     <div id="tab-dashboard" style="display:none;">
         <div class="glass" style="padding:16px 20px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
@@ -246,6 +242,7 @@
                         <th>Остаток</th>
                         <th>Расход/день</th>
                         <th>Заказ на месяц (+20%)</th>
+                        <th>Таймер доставки</th>
                         <th>Действие</th>
                     </tr>
                 </thead>
@@ -254,7 +251,6 @@
         </div>
     </div>
 
-   
     <div id="tab-catalog" style="display:none;">
         <div style="margin-bottom: 20px;">
             <h3 style="font-size:20px; font-weight:700;">🧰 Дополнительные модули и инструменты</h3>
@@ -266,28 +262,27 @@
 </div>
 
 <script>
-   
+    // Настройки товаров с индивидуальным временем доставки под категории
     const presets = {
         coffee: [
-            { id: 1, name: "Кофейное зерно Arabica (1кг)", stock: 3, minStock: 5, unit: "кг", dailyUse: 0.8, supplier: "Tasty Coffee" },
-            { id: 2, name: "Молоко 3.2% (1л)", stock: 10, minStock: 20, unit: "шт", dailyUse: 12, supplier: "ФудМастер" },
-            { id: 3, name: "Сироп Карамель (1л)", stock: 2, minStock: 3, unit: "шт", dailyUse: 0.4, supplier: "Monin" },
-            { id: 4, name: "Одноразовые стаканы 350мл", stock: 150, minStock: 200, unit: "шт", dailyUse: 35, supplier: "EcoPack" }
+            { id: 1, name: "Кофейное зерно Arabica (1кг)", stock: 3, minStock: 5, unit: "кг", dailyUse: 0.8, supplier: "Tasty Coffee", deliveryHours: 24 }, // 1 день
+            { id: 2, name: "Молоко 3.2% (1л)", stock: 10, minStock: 20, unit: "шт", dailyUse: 12, supplier: "ФудМастер", deliveryHours: 2 },        // 2 часа
+            { id: 3, name: "Сироп Карамель (1л)", stock: 2, minStock: 3, unit: "шт", dailyUse: 0.4, supplier: "Monin", deliveryHours: 12 },        // 12 часов
+            { id: 4, name: "Одноразовые стаканы 350мл", stock: 150, minStock: 200, unit: "шт", dailyUse: 35, supplier: "EcoPack", deliveryHours: 48 }   // 2 дня
         ],
         beauty: [
-            { id: 1, name: "Шампунь очищающий (1л)", stock: 2, minStock: 3, unit: "шт", dailyUse: 0.3, supplier: "L'Oreal Prof" },
-            { id: 2, name: "Краска для волос #6.0", stock: 4, minStock: 10, unit: "шт", dailyUse: 1.2, supplier: "Estel Pro" },
-            { id: 3, name: "Одноразовые пеньюары", stock: 80, minStock: 100, unit: "шт", dailyUse: 15, supplier: "BeautyPack" },
-            { id: 4, name: "Масло для кутикулы 50мл", stock: 1, minStock: 4, unit: "шт", dailyUse: 0.2, supplier: "NailArt" }
+            { id: 1, name: "Шампунь очищающий (1л)", stock: 2, minStock: 3, unit: "шт", dailyUse: 0.3, supplier: "L'Oreal Prof", deliveryHours: 18 },
+            { id: 2, name: "Краска для волос #6.0", stock: 4, minStock: 10, unit: "шт", dailyUse: 1.2, supplier: "Estel Pro", deliveryHours: 6 },
+            { id: 3, name: "Одноразовые пеньюары", stock: 80, minStock: 100, unit: "шт", dailyUse: 15, supplier: "BeautyPack", deliveryHours: 36 },
+            { id: 4, name: "Масло для кутикулы 50мл", stock: 1, minStock: 4, unit: "шт", dailyUse: 0.2, supplier: "NailArt", deliveryHours: 4 }
         ],
         market: [
-            { id: 1, name: "Вода без газа 0.5л", stock: 20, minStock: 40, unit: "шт", dailyUse: 15, supplier: "Tassay" },
-            { id: 2, name: "Пакеты майка 30х50", stock: 300, minStock: 500, unit: "шт", dailyUse: 80, supplier: "PolyPack" },
-            { id: 3, name: "Чековая лента 80мм", stock: 5, minStock: 12, unit: "рул", dailyUse: 2, supplier: "PaperPrint" },
-            { id: 4, name: "Крафт-пакеты фасовочные", stock: 120, minStock: 200, unit: "шт", dailyUse: 25, supplier: "EcoPaper" }
+            { id: 1, name: "Вода без газа 0.5л", stock: 20, minStock: 40, unit: "шт", dailyUse: 15, supplier: "Tassay", deliveryHours: 5 },
+            { id: 2, name: "Пакеты майка 30х50", stock: 300, minStock: 500, unit: "шт", dailyUse: 80, supplier: "PolyPack", deliveryHours: 24 },
+            { id: 3, name: "Чековая лента 80мм", stock: 5, minStock: 12, unit: "рул", dailyUse: 2, supplier: "PaperPrint", deliveryHours: 8 },
+            { id: 4, name: "Крафт-пакеты фасовочные", stock: 120, minStock: 200, unit: "шт", dailyUse: 25, supplier: "EcoPaper", deliveryHours: 30 }
         ]
     };
-
 
     const tools = [
         { id: 1, name: "🤖 Telegram Бот Автозакупок", desc: "Автоматически присылает накладные поставщикам, когда остаток меньше нормы.", active: true },
@@ -300,6 +295,7 @@
 
     let currentInventory = [];
     let orders = [];
+    let timerInterval = null;
 
     function handleLogin(e) {
         e.preventDefault();
@@ -319,15 +315,26 @@
             </span>
         `;
 
-        currentInventory = [...presets[biz]];
+        // Инициализация склада и сброс поставок
+        currentInventory = presets[biz].map(item => ({
+            ...item,
+            deliveryEta: null,
+            pendingQty: 0
+        }));
+
         renderInventory();
         renderCatalog();
 
         document.getElementById('login-overlay').style.display = 'none';
         document.getElementById('main-site-content').style.display = 'block';
+
+        // Запуск глобального цикла обновления таймеров
+        if (timerInterval) clearInterval(timerInterval);
+        timerInterval = setInterval(updateTimers, 1000);
     }
 
     function logout() {
+        if (timerInterval) clearInterval(timerInterval);
         document.getElementById('main-site-content').style.display = 'none';
         document.getElementById('login-overlay').style.display = 'flex';
     }
@@ -345,24 +352,108 @@
 
         currentInventory.forEach(item => {
             const isLow = item.stock <= item.minStock;
+            const isDelivering = item.deliveryEta && item.deliveryEta > Date.now();
             const monthlyNeed = Math.ceil((item.dailyUse * 30) * 1.2);
+
+            // Определение статуса
+            let statusBadge = '';
+            if (isDelivering) {
+                statusBadge = `<span class="badge badge-warning">🟡 В пути</span>`;
+            } else if (isLow) {
+                statusBadge = `<span class="badge badge-danger">🔴 Дефицит</span>`;
+            } else {
+                statusBadge = `<span class="badge badge-success">🟢 В наличии</span>`;
+            }
 
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td><span class="badge ${isLow ? 'badge-danger' : 'badge-success'}">${isLow ? '🔴 Дефицит' : '🟢 Норма'}</span></td>
+                <td>${statusBadge}</td>
                 <td><strong>${item.name}</strong><br><small style="color:var(--text-muted);">${item.supplier}</small></td>
                 <td><strong>${item.stock}</strong> ${item.unit}</td>
                 <td>${item.dailyUse} ${item.unit}</td>
                 <td><strong style="color:var(--primary);">${monthlyNeed} ${item.unit}</strong></td>
                 <td>
-                    <button class="btn btn-primary" style="padding:4px 10px; font-size:11px;" onclick="orderItem('${item.name}', ${monthlyNeed}, '${item.unit}', '${item.supplier}')">
-                        Заказать
+                    <span id="timer-${item.id}" class="timer-tag">
+                        ${isDelivering ? formatETA(item.deliveryEta) : '—'}
+                    </span>
+                </td>
+                <td>
+                    <button class="btn ${isDelivering ? 'btn-outline btn-disabled' : 'btn-primary'}" 
+                            style="padding:4px 10px; font-size:11px;" 
+                            ${isDelivering ? 'disabled' : ''} 
+                            onclick="orderItem(${item.id})">
+                        ${isDelivering ? 'Заказано' : 'Заказать'}
                     </button>
                 </td>
             `;
             tbody.appendChild(tr);
         });
         lucide.createIcons();
+    }
+
+    function orderItem(itemId) {
+        const item = currentInventory.find(i => i.id === itemId);
+        if (!item) return;
+
+        const monthlyNeed = Math.ceil((item.dailyUse * 30) * 1.2);
+        
+        // Устанавливаем время прибытия (часы в миллисекунды)
+        item.deliveryEta = Date.now() + (item.deliveryHours * 3600 * 1000);
+        item.pendingQty = monthlyNeed;
+
+        // Фиксация в истории
+        const orderText = `Заказ #${Math.floor(1000+Math.random()*9000)} — ${item.name} (${monthlyNeed} ${item.unit}) -> ${item.supplier} (Доставка ~${item.deliveryHours}ч)`;
+        orders.unshift(orderText);
+        document.getElementById('orders-list').innerHTML = orders.map(o => `<div style="padding:8px 0; border-bottom:1px solid var(--border);">${o}</div>`).join('');
+
+        renderInventory();
+        alert(`Заявка отправлена! Товар "${item.name}" в пути. Ожидаемое время доставки: ${item.deliveryHours} ч.`);
+    }
+
+    function updateTimers() {
+        let stateChanged = false;
+
+        currentInventory.forEach(item => {
+            if (item.deliveryEta) {
+                const diff = item.deliveryEta - Date.now();
+                const timerEl = document.getElementById(`timer-${item.id}`);
+
+                if (diff <= 0) {
+                    // Таймер истек — приход товара на склад
+                    item.stock = Math.round((item.stock + item.pendingQty) * 10) / 10;
+                    item.deliveryEta = null;
+                    item.pendingQty = 0;
+                    stateChanged = true;
+                } else if (timerEl) {
+                    timerEl.innerText = formatETA(item.deliveryEta);
+                }
+            }
+        });
+
+        if (stateChanged) {
+            renderInventory();
+        }
+    }
+
+    function formatETA(etaTimestamp) {
+        const diff = etaTimestamp - Date.now();
+        if (diff <= 0) return '—';
+
+        const totalSeconds = Math.floor(diff / 1000);
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        const pad = n => String(n).padStart(2, '0');
+        return `${hours}ч ${pad(minutes)}м ${pad(seconds)}с`;
+    }
+
+    function simulateDay() {
+        currentInventory.forEach(item => { 
+            item.stock = Math.max(0, Math.round((item.stock - item.dailyUse) * 10) / 10); 
+        });
+        renderInventory();
+        alert('✂️ Смена закрыта! Расходные материалы списаны.');
     }
 
     function renderCatalog() {
@@ -393,19 +484,6 @@
             renderCatalog();
             alert(tool.active ? `Модуль "${tool.name}" успешно подключен!` : `Модуль "${tool.name}" отключен.`);
         }
-    }
-
-    function simulateDay() {
-        currentInventory.forEach(item => { item.stock = Math.max(0, Math.round((item.stock - item.dailyUse) * 10) / 10); });
-        renderInventory();
-        alert('✂️ Смена закрыта! Расходные материалы списаны.');
-    }
-
-    function orderItem(name, qty, unit, supplier) {
-        const orderText = `Заказ #${Math.floor(1000+Math.random()*9000)} — ${name} (${qty} ${unit}) -> ${supplier}`;
-        orders.unshift(orderText);
-        document.getElementById('orders-list').innerHTML = orders.map(o => `<div style="padding:8px 0; border-bottom:1px solid var(--border);">${o}</div>`).join('');
-        alert(`Заявка поставщику "${supplier}" отправлена!`);
     }
 
     lucide.createIcons();
